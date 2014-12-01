@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Syntax Highlighting Post
-description: "Demo post displaying the various ways of highlighting code in Markdown."
-modified: 2013-08-20
+title: 语法高亮的示例文章
+description: "在Markdown中使用语法高亮的各种语法。"
+modified: 2014-11-30
 tags: [sample post, code, highlighting]
 image:
   feature: abstract-10.jpg
@@ -12,9 +12,9 @@ image:
 
 [Syntax highlighting](http://en.wikipedia.org/wiki/Syntax_highlighting) is a feature that displays source code, in different colors and fonts according to the category of terms. This feature facilitates writing in a structured language such as a programming language or a markup language as both structures and syntax errors are visually distinct. Highlighting does not affect the meaning of the text itself; it is intended only for human readers.
 
-### Pygments Code Blocks
+### Pygments 代码块
 
-To modify styling and highlight colors edit `/assets/less/pygments.less` and compile `main.less` with your favorite preprocessor. Or edit `main.css` if that's your thing, the classes you want to modify all begin with `.highlight`.
+如果想要修改颜色和样式，需要编辑 `/assets/less/pygments.less` ，并编译 `main.less`。或者只修改 `main.css` ， 所有相关的样式都是以 `.highlight`开头的。
 
 {% highlight css %}
 #container {
@@ -24,7 +24,7 @@ To modify styling and highlight colors edit `/assets/less/pygments.less` and com
 }
 {% endhighlight %}
 
-Line numbering enabled:
+显示行号:
 
 {% highlight html linenos %}
 {% raw %}
@@ -60,7 +60,7 @@ end
 {% endhighlight %}
 
 
-### Standard Code Block
+### 标准的代码块，没有加语法高亮
 
     {% raw %}
     <nav class="pagination" role="navigation">
@@ -76,7 +76,7 @@ end
 
 ### Fenced Code Blocks
 
-To modify styling and highlight colors edit `/assets/less/coderay.less` and compile `main.less` with your favorite preprocessor. Or edit `main.css` if that's your thing, the classes you want to modify all begin with `.coderay`. Line numbers and a few other things can be modified in `_config.yml` under `coderay`.
+如果想要修改颜色和样式，需要编辑 `/assets/less/coderay.less` ，并编译 `main.less`。或者只修改 `main.css` ， 所有相关的样式都是以 `.coderay` 开头的。代码行号和其它东西可以在 `coderay` 下的 `_config.yml` 中修改。
 
 ~~~ css
 #container {
@@ -119,7 +119,7 @@ end
 
 ### GitHub Gist Embed
 
-An example of a Gist embed below.
+使用嵌入式的Gist的样例
 
 {% gist mmistakes/6589546 %}
 

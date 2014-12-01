@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Post with a Background Image
+title: 有个背景图片的文章样例
 description: "Sample post with a background image CSS override."
 tags: [sample post]
 image:
