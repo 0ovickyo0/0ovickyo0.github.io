@@ -1,11 +1,13 @@
-# 个人前端blog
+# 个人blog
 
 使用了[hpstr](https://github.com/hacke2/hpstr-jekyll-theme)的模板。
 
+##在此基础上已做的修改
+* 增加了百度分享
+* 加入百度站长助手，google analytics
+
 ## 在此基础上拟作如下修改：
 * 将google cdn换成 baidu cdn 原因你懂的
-* 去掉分享到twitter、facebook等国外社区，加入百度分享
-* 加入百度站长助手，方便您的统计
 * disqus评论
 * Read More功能，不想像以前一样文章全显示出来
 
