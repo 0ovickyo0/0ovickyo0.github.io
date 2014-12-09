@@ -65,23 +65,23 @@ Sass是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照�
 	
 在控制台使用如下命令安装sass：
 
-~~~ bash
+{% highlight bash %}
 $ gem install sass
-~~~	
+{% endhighlight %}	
 在我的安装中一直出现了这个错误：
 		Unable to download data from https://rubygems.org/ - SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (https://api
 		.rubygems.org/latest_specs.4.8.gz)
 使用了下面这个解决办法：
 
-~~~ bash
+{% highlight bash %}
 D:\0ovickyo0.github.io>gem install sass --source http://rubygems.org
 		Successfully installed sass-3.4.9
 		Parsing documentation for sass-3.4.9
 		Done installing documentation for sass after 7 seconds
-		WARNING:  Unable to pull data from 'https://rubygems.org/': SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (https://api.ru
+		WARNING:    Unable to pull data from 'https://rubygems.org/': SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (https://api.ru
 		bygems.org/latest_specs.4.8.gz)
 		1 gem installed
-~~~
+{% endhighlight %}
 成功安装了，据说是因为网络的原因timeout了，但是此种方法并不安全，不可长期使用。另还可尝试[解决方法](https://gist.github.com/fnichol/867550)。
 	
 使用sass -v 查看sass的版本
@@ -92,10 +92,10 @@ LESS的安装和Sass安装有所不同，他不需要依赖于Ruby环境，就�
 a）客户端安装：
 我们可以直接在客户端（浏览器）使用“.less”（LESS源文件），只需要在官网下载一个Javascript脚本文件“less.js”，然后在我们需要引入LESS源文件的HTML的<head>中加入如下代码：
 
-~~~ html
+{% highlight html %}
 <link rel="stylesheet/less" type="text/css" href="文件路径/styles.less">
 <script src="文件路径/less.js" type="text/javascript"></script> 
-~~~		
+{% endhighlight %}		
 需要注意的是：在引入“.less”文件中，“link”的“rel”属性要设置为“stylesheet/less”。还有更重要的一点需要注意的是：LESS源文件一定要在“less.js”引入之前引入，这样才能保证LESS源文件正确编译解析。
 
 b）服务器端安装
@@ -103,21 +103,21 @@ LESS在服务器端的使用主要是借助于LESS的编译器，将LESS源文�
 		
 在控制台输入下面命令：
 
-~~~ bash
+{% highlight bash %}
 $ npm install less
-~~~
+{% endhighlight %}
 这样就安装完LESS的编译命令，可以在本地正常编译LESS源文件。如果想下载最新稳定版本的LESS，还可以尝试下面的命令：
 
-~~~ bash
+{% highlight bash %}
 $ npm install less@latest
-~~~
+{% endhighlight %}
 
 ## Stylus install 
 Stylus 的安装和LESS在服务器端的安装很相似，同样依赖于Node JS环境，也就是说要先安装Node JS。然后在终端输入如下命令：
 
-~~~ bash
-$ npm install stylus    
-~~~
+{% highlight bash %}
+$ npm install stylus        
+{% endhighlight %}
 然后就会自动下载安装最新的stylus库。这样就算是安装完Stylus了，也可以正常使用Stylus了。
 
 # 将源文件编译为CSS
@@ -130,67 +130,67 @@ Sass文件就是普通的文本文件，不过其文件后缀名有两种，一�
 	
 在“style.scss”的目录下（F盘），输入命令：
 
-~~~ bash
+{% highlight bash %}
 sass style.scss style.css
-~~~
+{% endhighlight %}
 这样在当前目录下会生成“style.css”文件，同时还可能会产生其他文件：
 
-~~~ bash
+{% highlight bash %}
 F:/
 |──.sass-cache
 |──style.css
 |──style.css.map
 └──style.scss
-~~~
+{% endhighlight %}
 其中“style.css”文件是转译出来的样式文件，可以被调用。
 	
 单文件的监听，只需要在刚才的命令行中输入：
 
-~~~ bash
+{% highlight bash %}
 sass --watch style.scss:style.css
-~~~
+{% endhighlight %}
 就会看到下面的提示信息：
 
-~~~ bash
+{% highlight bash %}
 F:\>sass --watch style.scss:style.css
 >>>Sass is watching for changes. Press Ctrl-C to stop.
-~~~
+{% endhighlight %}
 看到上面所提示的信息就表示监听成功，这样一来，只要你修改了“style.scss”文件，“style.css”文件就会随着更新变化。
 
-~~~ bash
+{% highlight bash %}
 >>> change detected to:style.scss
     write style.css
     write style.css.map
-~~~
+{% endhighlight %}
 对于一个项目而言，不太可能只有一个CSS样式文件，如果有多个Sass文件需要监听时，就很有必要的组织一下。默认情况下，我们喜欢将所有的Sass文件放在“/css/sass”目录中，而生成的CSS文件则直接放在“/css”目录下。现在我们修改一下项目文件目录结构：
 
-~~~ bash
+{% highlight bash %}
 F:/
 └──css
     └──scss
         └──style.scss
-~~~
+{% endhighlight %}
 使用下面的命令进行批量的监听：
 
-~~~ bash
+{% highlight bash %}
 sass --watch css/sass:css
-~~~
+{% endhighlight %}
 注意，上面的命令对应的命令格式为：
 
-~~~ bash
+{% highlight bash %}
 sass --watch sassFileDirectory:cssFileDirectory
-~~~
+{% endhighlight %}
 执行后是这样子的：
 
-~~~ bash
+{% highlight bash %}
 F:\>sass --watch css/sass:css
 >>> Sass is watching for changes. Press Ctrl-C to stop.
     write css/style.css
     write css/style.css.mao
-~~~
+{% endhighlight %}
 最后生成的目录是下面这样的：
 
-~~~ bash
+{% highlight bash %}
 F:/
 └──css
 |   |──scss
@@ -198,101 +198,101 @@ F:/
 |   |──style.css 
 |   └──style.css.map
 └──.sass-cache
-~~~
+{% endhighlight %}
 除了使用cmd控制台转译Sass之外还可以考虑第三方工具，比如说有名的Compass.app和fire.app。
 
 ## LESS编译CSS
 
 LESS文件的转译和Sass文件的转译可以说是大同小异，不同之处是LESS在安装的Node JS环境下通过其自己的命令来进行转译。
 
-~~~ bash
+{% highlight bash %}
 lessc style.less
-~~~
+{% endhighlight %}
 上面的命令会将编译的CSS传递给stdout，如下：
 
-~~~ bash
+{% highlight bash %}
 F:\less>lessc style.less
 body{
   background-color: #666;
 }
 F:\less>
-~~~
+{% endhighlight %}
 你可以将它保存到一个文件中：
 
-~~~ bash
+{% highlight bash %}
 lessc style.less > style.css
-~~~
+{% endhighlight %}
 除了上面的命令转译LESS源文件之外，现在还有很多第三方开发的工具，比较常见的有：SimpleLess、Less.app、LESS编译辅助脚本-LESS2CSS、WinLess和CodeKit.app等，win下推荐WinLess工具，简单易用，不过在IOS系统下LESS.app和CodeKit.app很好用。
 
 ## Stylus编译CSS
 Stylus具有可执行性，因此Stylus能将自身转换成CSS。Stylus可以读取自”stdin“输出到”stdout“，因此Stylus可以像下面转译源文件：
 
-~~~ bash
-stylus –-compress  <some.styl> some.css
-~~~
+{% highlight bash %}
+stylus –-compress    <some.styl> some.css
+{% endhighlight %}
 出现问题：包是安装成功的，但是不可执行？
 需要使用如下命令进行安装：
 
-~~~ bash
+{% highlight bash %}
 npm install stylus -g
-~~~
+{% endhighlight %}
 运行后出现如下错误（Error：ENOENT，stat 'F:\style\-compress）。
 		
 查询官方文档后，发现命令有误，正确的命令应该是（注意compress前有两个--）：
 
-~~~ bash
+{% highlight bash %}
 stylus –-compress  style.styl style.css
-~~~
+{% endhighlight %}
 运行后依然有错误（Error：ENOENT，stat 'F:\stylus\style.css）。
 
 手动新建文件style.css后再次运行：
 
-~~~ bash
+{% highlight bash %}
 F:\stylus>stylus --compress style.styl styl.css
     compiled style.css
     compiled style.css
-~~~
+{% endhighlight %}
 <span class="highlight-pink">总结来说，1）命令不要敲错，要有两个减号；2）执行的文件css和styl都要存在（太不科学了！）</span>
 	
 Stylus也像Sass一样，同时接受单个文件和整个目录的转译。例如，一个目录名为”css“将在同一个目录编译并输出”.css“文件。
 
-~~~ bash
+{% highlight bash %}
 F:\>stylus stylus
     compiled stylus\style.css
-~~~
+{% endhighlight %}
 下面的命令将输出到”./public/stylesheets“：
 
-~~~ bash
+{% highlight bash %}
 stylus css –-out public/stylesheets
-~~~
+{% endhighlight %}
 执行后，找不到stylesheets了：
 
-~~~ bash
+{% highlight bash %}
 F:\>stylus css --out public/stylesheets
-~~~
+{% endhighlight %}
 发现是文件名不对，更正后命令为：
 
-~~~ bash
+{% highlight bash %}
 stylus stylus --out public/stylesheets
-~~~
+{% endhighlight %}
 执行后报错（Error：ENOENT，open ‘F：\public\stylesheets\style.css）。
 
 按照上面路径新建文件style.css，运行成功：
 
-~~~ bash
+{% highlight bash %}
 F:\>stylus stylus --out public/stylesheets
     compiled public\stylesheets\style.css
-~~~
+{% endhighlight %}
 
 <span class="highlight-pink">综上，1）命令要敲对，2）源文件和目的文件都要存在，3）stylus真矫情</span>
 
 还可以同时转译多个文件：
 
-~~~ bash
+{% highlight bash %}
 F:\>stylus>stylus style.styl style1.styl
   compiled style.css
   compiled style1.css
-~~~
+{% endhighlight %}
 生成的 style.css 和 style1.css 会与 style.styl , style1.styl在同一个目录下面。
 		
 如果你的浏览器安装了Firebug，那么可以使用[FireStylus扩展](https://github.com/LearnBoost/stylus/blob/master/docs/firebug.md)。
@@ -305,47 +305,47 @@ F:\>stylus>stylus style.styl style1.styl
 ## Sass LESS语法
 下面是sass和LESS的语法：
 
-~~~ css
+{% highlight css %}
 /* style.scss or style.less */
 h1 {
     color:#0982C1;
 }
-~~~
+{% endhighlight %}
 你注意到了，这是一个在普通不过的，不过Sass同时也支持老的语法，就是不包含花括号和分号的方式，老的语法和常规的CSS语法略有不同，他需要更严格的语法，任何缩进和字符的错误都会造成样式的编译错误。Sass可以省略大括号（{}）和分号（；），完全依靠严格的缩进和格式化代码，而且文件使用”.sass“扩展名，他的语法类似于：
 
-~~~ css
+{% highlight css %}
 /* style.sass */
 h1 
-    color:#0982C1;
-~~~
+    color:#0982C1;
+{% endhighlight %}
 
 ## Stylus语法
 
 而Stylus支持的语法要更多样性一点，它默认使用.styl的文件扩展名，下面是Stylus支持的语法：
 
-~~~ css
+{% highlight css %}
 /* style.styl */
 h1 {
-  color: #0982C1;
+    color: #0982C1;
 }
-  
+
 /* omit brackets */
 h1
-  color: #0982C1;
-  
+    color: #0982C1;
+
 /* omit colons and semi-colons */
 h1
-  color #0982C1
-~~~
+    color #0982C1
+{% endhighlight %}
 在Stylus 和 Sass中，你可以在一份样式表单中使用不同的变量，例如下面的写法不会报错：
 
-~~~ css
+{% highlight css %}
 h1 {
-  color #0982c1
+    color #0982c1
 }
 h2
-  font-size: 1.2em
-~~~
+    font-size: 1.2em
+{% endhighlight %}
 
 # 变量
 
@@ -354,81 +354,81 @@ h2
 ## Sass
 Sass的变量必须是$开始，然后变量名和值使用冒号隔开，跟CSS的属性一致：
 
-~~~ css
+{% highlight css %}
 $mainColor: #0982c1;
 $siteWidth: 1024px;
 $borderStyle: dotted;
 
 body {
-    color: $mainColor;
-    border: 1px $borderStyle $mainColor;
-    max-width: $siteWidth;
+    color: $mainColor;
+    border: 1px $borderStyle $mainColor;
+    max-width: $siteWidth;
 }
-~~~
+{% endhighlight %}
 
 ## Less
 而Less的变量名使用@符号开始：
 
-~~~ css
+{% highlight css %}
 @mainColor: #0982c1;
 @siteWidth: 1024px;
 @borderStyle: dotted;
 
 body {
-    color: @mainColor;
-    border: 1px @borderStyle @mainColor;
-    max-width: @siteWidth;
+    color: @mainColor;
+    border: 1px @borderStyle @mainColor;
+    max-width: @siteWidth;
 }
-~~~
+{% endhighlight %}
 
 ## Stylus
 Stylus对变量名没有任何限定，你可以是$开始，也可以是任意字符，而且与变量值之间可以用冒号、空格隔开，需要注意的是Stylus(0.22.4)将会编译@开始的变量，但其对应的值并不会赋予该变量，换句话说，在Stylus的变量名不要用@开头。
 
-~~~ css
+{% highlight css %}
 mainColor = #0982c1
 siteWidth = 1024px
 $borderStyle = dotted
-  
+
 body
-  color mainColor
-  border 1px $borderStyle mainColor
-  max-width siteWidth
-~~~
+    color mainColor
+    border 1px $borderStyle mainColor
+    max-width siteWidth
+{% endhighlight %}
 上面三种不同的CSS预处理器的写法，最终都将产生相同的结果：
 
-~~~ css
+{% highlight css %}
 body {
-  color: #0982c1;
-  border: 1px dotted #0982c1;
-  max-width: 1024px;
+    color: #0982c1;
+    border: 1px dotted #0982c1;
+    max-width: 1024px;
 }
-~~~
+{% endhighlight %}
 Stylus还有一个独特的功能，不需要分配值给变量就可以定义引用属性：
 
-~~~ css
-#logo                             
-  position  absolute              
-  top  50%                        
-  left  50%                       
-  width  w = 150px                
-  height  h = 80px                
-  margin-left  -(w / 2)           
-  margin-top  -(h / 2)   
-~~~
+{% highlight css %}
+#logo
+    position    absolute
+    top    50%
+    left    50%
+    width    w = 150px
+    height    h = 80px
+    margin-left    -(w / 2) 
+    margin-top    -(h / 2) 
+{% endhighlight %}
 
 编译出来的样式：
 
-~~~ css
+{% highlight css %}
 #logo {
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:150px;
-  height:80px;
-  margin-left:-75px;
-  margin-top:-40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:150px;
+    height:80px;
+    margin-left:-75px;
+    margin-top:-40px;
 } 
-~~~
+{% endhighlight %}
 		
 从上面的代码中我们可以看出，CSS预处理器语言中的变量是值级别的重复使用，可以将相同的值定义成变量统一管理起来。
 你可以想象，加入你的CSS中使用了某个颜色的地方多达数十次，那么要修改颜色时你必须找到这数十次的地方并意已修改，而有了CSS预处理器，修改一个地方就够了！
@@ -440,59 +440,59 @@ CSS预处理器语言中的变量和其它程序语言一样，可以实现值�
 ## Sass的作用域
 Sass中作用域在这三款预处理器中是最差的，可以说在Sass中是不存在什么全局变量。具体来看下面的代码：
 
-~~~ css
+{% highlight css %}
 /*Sass样式*/
 $color: black;
 .scoped {
-  $bg: blue;
-  $color: white;
-  color: $color;
-  background-color:$bg;
+    $bg: blue;
+    $color: white;
+    color: $color;
+    background-color:$bg;
 }
 .unscoped {
-  color:$color;
-}  
-~~~
+    color:$color;
+}
+{% endhighlight %}
 转译出来的CSS样式：
 
-~~~ css
+{% highlight css %}
 .scoped {
-  color:white;/*是白色*/
-  background-color:blue;
+    color:white;/*是白色*/
+    background-color:blue;
 }
 .unscoped {
-  color:white;/*白色（无全局变量概念）*/
-}   
-~~~
+    color:white;/*白色（无全局变量概念）*/
+}
+{% endhighlight %}
 示例明显的告诉我们，在Sass样式中定义变量，调用变量是没有全局变量一个概念存在，因此在Sass中定义了相同变量名时，在调用时候千万小心，不然会给你的样式带来错误。
 	
 ## LESS作用域
 LESS中的作用域和娶她程序语言中的作用域非常的相同，他首先会查找局部定义的变量，如果没有找到，会像冒泡一样，一级一级往下查找，直到根为止，同样上面的例子，我们来看看他在LESS下所起的变化。
 
-~~~ css
+{% highlight css %}
 /*LESS样式*/
 @color: black;
 .scoped {
-  @bg: blue;
-  @color: white;
-  color: @color;
-  background-color:@bg;
+    @bg: blue;
+    @color: white;
+    color: @color;
+    background-color:@bg;
 }
 .unscoped {
-  color:@color;
+    color:@color;
 }
-~~~
+{% endhighlight %}
 转译出来的CSS样式：
 
-~~~ css
+{% highlight css %}
 .scoped {
-  color:white;/*白色（调用了局部变量）*/
-  background-color:blue;
+    color:white;/*白色（调用了局部变量）*/
+    background-color:blue;
 }
 .unscoped {
-  color:black;/*黑色（调用了全局变量）*/
+    color:black;/*黑色（调用了全局变量）*/
 }
-~~~
+{% endhighlight %}
 
 ## Stylus的作用域
 Stylus虽然起步比较晚，但其作用域的特性和LESS一样，可以支持全局变量和局部变量。会向上冒泡查找，直到根为止。
@@ -500,55 +500,55 @@ Stylus虽然起步比较晚，但其作用域的特性和LESS一样，可以支�
 # 嵌套
 如果我们需要在CSS中相同的parent引用多个元素，这将是非常乏味的，你需要一遍又一遍写parent。例如：
 
-~~~ css
+{% highlight css %}
 section {
-  margin: 10px;
+    margin: 10px;
 }
 section nav {
-  height: 25px;
+    height: 25px;
 }
 section nav a {
-  color: #0982C1;
+  color: #0982C1;
 }
 section nav a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
-~~~
+{% endhighlight %}
 而如果用CSS预处理器，就可以少写很多单词，而且父子节点关系一目了然，我们这里提到的三个CSS框架都是允许嵌套语法：
 
-~~~ css
+{% highlight css %}
 section {
-  margin: 10px;
-  
-  nav {
-    height: 25px;
-  
-    a {
-      color: #0982C1;
-  
-      &amp;:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+    margin: 10px;
+    
+    nav {
+        height: 25px;
+    
+        a {
+            color: #0982C1;
+    
+            &amp;:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }
-~~~
+{% endhighlight %}
 最终生成的CSS结果是：
 
-~~~ css
+{% highlight css %}
 section {
-  margin: 10px;
+    margin: 10px;
 }
 section nav {
-  height: 25px;
+    height: 25px;
 }
 section nav a {
-  color: #0982C1;
+    color: #0982C1;
 }
 section nav a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
-~~~
+{% endhighlight %}
 非常方便。
 
 # Mixins（混入）
@@ -561,25 +561,25 @@ Sass样式中声明Mixins时需要使用”@mixin“，然后后面紧跟Mixins�
 	
 下面是一个简单的例子，比如在你的Sass样式中定义了一个名叫”error“的Mixin，这个”error“设置了一个参数”$borderWidth“，在没特别定义外，这个参数的默认值设置为”2px“：
 
-~~~ css
+{% highlight css %}
 /* Sass mixin error with (optional) argument $borderWidth which defaults to 2px if not specified */
 @mixin error($borderWidth: 2px) {
-  border: $borderWidth solid #F00;
-  color: #F00;
+    border: $borderWidth solid #F00;
+    color: #F00;
 }
-  
+    
 .generic-error {
-  padding: 20px;
-  margin: 4px;
-  @ include error(); /* Applies styles from mixin error */
+    padding: 20px;
+    margin: 4px;
+    @ include error(); /* Applies styles from mixin error */
 }
 .login-error {
-  left: 12px;
-  position: absolute;
-  top: 20px;
-  @ include error(5px); /* Applies styles from mixin error with argument $borderWidth equal to 5px*/
+    left: 12px;
+    position: absolute;
+    top: 20px;
+    @ include error(5px); /* Applies styles from mixin error with argument $borderWidth equal to 5px*/
 }
-~~~
+{% endhighlight %}
 ## LESS
 在LESS中，混入是指将定义好的”Class A“中引入另一个已经定义的”Class“，就像在当前的”class“招工难增加一个属性一样。
 		
@@ -587,186 +587,186 @@ Sass样式中声明Mixins时需要使用”@mixin“，然后后面紧跟Mixins�
 		
 正如Sass混入的示例一样，同样在LESS样式中定义一个名叫”error“的Mixin，这个”error“设置了一个参数”@borderWidth“，在没有特别定义外，这个参数的默认值是”2px“
 
-~~~ css
+{% highlight css %}
 /* LESS mixin error with (optional) argument @borderWidth which defaults to 2px if not specified */
 .error(@borderWidth: 2px) {
-  border: @borderWidth solid #F00;
-  color: #F00;
+    border: @borderWidth solid #F00;
+    color: #F00;
 }
-  
+    
 .generic-error {
-  padding: 20px;
-  margin: 4px;
-  .error(); /* Applies styles from mixin error */
+    padding: 20px;
+    margin: 4px;
+    .error(); /* Applies styles from mixin error */
 }
 .login-error {
-  left: 12px;
-  position: absolute;
-  top: 20px;
-  .error(5px); /* Applies styles from mixin error with argument @borderWidth equal to 5px */
+    left: 12px;
+    position: absolute;
+    top: 20px;
+    .error(5px); /* Applies styles from mixin error with argument @borderWidth equal to 5px */
 }
-~~~
+{% endhighlight %}
 
 ## Stylus
 Stylus中的混入和前两个CSS预处理器语言的混入略有不同，它可以不使用任何符号，就直接声明Mixins名，然后在定义参数和默认值之间用等号（=）来连接。
 
-~~~ css
+{% highlight css %}
 /* Stylus mixin error with (optional) argument borderWidth which defaults to 2px if not specified */
 error(borderWidth= 2px) {
-  border: borderWidth solid #F00;
-  color: #F00;
+    border: borderWidth solid #F00;
+    color: #F00;
 }
-  
+    
 .generic-error {
-  padding: 20px;
-  margin: 4px;
-  error(); /* Applies styles from mixin error */
+    padding: 20px;
+    margin: 4px;
+    error(); /* Applies styles from mixin error */
 }
 .login-error {
-  left: 12px;
-  position: absolute;
-  top: 20px;
-  error(5px); /* Applies styles from mixin error with argument borderWidth equal to 5px */
+    left: 12px;
+    position: absolute;
+    top: 20px;
+    error(5px); /* Applies styles from mixin error with argument borderWidth equal to 5px */
 }
-~~~
+{% endhighlight %}
 最终它们都将编译成如下的CSS样式：
 
-~~~ css
+{% highlight css %}
 .generic-error {
-  padding: 20px;
-  margin: 4px;
-  border: 2px solid #f00;
-  color: #f00;
+    padding: 20px;
+    margin: 4px;
+    border: 2px solid #f00;
+    color: #f00;
 }
 .login-error {
-  left: 12px;
-  position: absolute;
-  top: 20px;
-  border: 5px solid #f00;
-  color: #f00;
+    left: 12px;
+    position: absolute;
+    top: 20px;
+    border: 5px solid #f00;
+    color: #f00;
 }
-~~~
+{% endhighlight %}
 
 # 继承
 当我们需要为多个元素定义相同样式的时候，我们可以考虑使用继承的用法。例如我们经常需要：
 
-~~~ css
+{% highlight css %}
 p,
 ul,
 ol {
-  /* styles here */
+    /* styles here */
 }
-~~~
+{% endhighlight %}
 这样做非常好，但往往我们需要给单独元素添加另外的样式，这个时候我们就需要把其中选择器单独出来写样式，如此一来我们维护样式就相当的麻烦。为了应对这个问题，CSS预处理器语言可以从一个选择器继承另一个选择器下的所有样式。
 	
 ## Sass和Stylus
 Sass和Stylus的继承是把一个选择器的所有样式继承到另一个选择器上，在继承另一个选择器的样式时需要使用”@extend“开始，后面紧跟被继承的选择器：
 我们可以这样写：
 
-~~~ css
+{% highlight css %}
 .block {
-  margin: 10px 5px;
-  padding: 2px;
+    margin: 10px 5px;
+    padding: 2px;
 }
-  
+    
 p {
-  @extend .block; /* Inherit styles from '.block' */
-  border: 1px solid #EEE;
+    @extend .block; /* Inherit styles from '.block' */
+    border: 1px solid #EEE;
 }
 ul, ol {
-  @extend .block; /* Inherit styles from '.block' */
-  color: #333;
-  text-transform: uppercase;
+    @extend .block; /* Inherit styles from '.block' */
+    color: #333;
+    text-transform: uppercase;
 }
-~~~
+{% endhighlight %}
 在这里首先定义.block块，然后让p、ul和ol元素继承.block，最终生成的CSS如下：
 
-~~~ css
+{% highlight css %}
 .block, p, ul, ol {
-  margin: 10px 5px;
-  padding: 2px;
+    margin: 10px 5px;
+    padding: 2px;
 }
 p {
-  border: 1px solid #EEE;
+    border: 1px solid #EEE;
 }
 ul, ol {
-  color: #333;
-  text-transform: uppercase;
+    color: #333;
+    text-transform: uppercase;
 }
-~~~
+{% endhighlight %}
 
 ## LESS的继承
 在这方面Less表现的稍微弱一些，LESS支持的继承和Sass与Stylus不一样，它不是在选择器上继承，而是将Mixins中的样式嵌套到每个选择器里面。这种方法的缺点就是在每个选择器中会有重复的样式产生。这种更像是混入写法：
 
-~~~ css
+{% highlight css %}
 .block {
-  margin: 10px 5px;
-  padding: 2px;
+    margin: 10px 5px;
+    padding: 2px;
 }
-  
+    
 p {
-  .block; /* Inherit styles from '.block' */
-  border: 1px solid #EEE;
+    .block; /* Inherit styles from '.block' */
+    border: 1px solid #EEE;
 }
 ul, ol {
-  .block; /* Inherit styles from '.block' */
-  color: #333;
-  text-transform: uppercase;
+    .block; /* Inherit styles from '.block' */
+    color: #333;
+    text-transform: uppercase;
 }
-~~~
+{% endhighlight %}
 生成的CSS如下：
 
-~~~ css
+{% highlight css %}
 .block {
-  margin: 10px 5px;
-  padding: 2px;
+    margin: 10px 5px;
+    padding: 2px;
 }
 p {
-  margin: 10px 5px;
-  padding: 2px;
-  border: 1px solid #EEE;
+    margin: 10px 5px;
+    padding: 2px;
+    border: 1px solid #EEE;
 }
 ul,
 ol {
-  margin: 10px 5px;
-  padding: 2px;
-  color: #333;
-  text-transform: uppercase;
+    margin: 10px 5px;
+    padding: 2px;
+    color: #333;
+    text-transform: uppercase;
 }
-~~~
+{% endhighlight %}
 你所看到的上面的代码中， .block的样式将会被插入到相应的你想要继承的选择器中，但需要注意的是优先级的问题。
 
 # 导入（Inport）
 很多CSS开发者对导入的做法都不感冒，因为它需要多次的HTTP请求。但是在CSS预处理器中的导入操作则不同，他只是在语义上包含了不同的文件，但最终结果是一个单一的CSS文件，如果你是通过@import "file.css"；导入CSS文件，那效果跟普通的CSS导入一样。注意：导入文件中定义的混入、变量等信息也将会被引入到主样式文件中，因此需要避免他们互相冲突。
 reset.css:
 
-~~~ css
+{% highlight css %}
 /* file.{type} */
 body {
-  background: #EEE;
+    background: #EEE;
 }
-~~~
+{% endhighlight %}
 main.xxx:
 
-~~~ css
+{% highlight css %}
 @ import "reset.css";
 @ import "file.{type}";
-  
+    
 p {
-  background: #0982C1;
+    background: #0982C1;
 }
-~~~
+{% endhighlight %}
 最终生成的CSS：
 
-~~~ css
+{% highlight css %}
 @ import "reset.css";
 body {
-  background: #EEE;
+    background: #EEE;
 }
 p {
-  background: #0982C1;
+    background: #0982C1;
 }
-~~~
+{% endhighlight %}
 (上面的那个例子好像意思是导入了2遍？)
 
 # 颜色函数
@@ -775,90 +775,90 @@ CSS预处理器一般都会内置一些颜色处理函数用来对颜色值进�
 	
 ## Sass
 
-~~~ css
+{% highlight css %}
 lighten($color, 10%); /* returns a color 10% lighter than $color */
-darken($color, 10%);  /* returns a color 10% darker than $color */
-  
-saturate($color, 10%);   /* returns a color 10% more saturated than $color */
+darken($color, 10%);    /* returns a color 10% darker than $color */
+    
+saturate($color, 10%);     /* returns a color 10% more saturated than $color */
 desaturate($color, 10%); /* returns a color 10% less saturated than $color */
-  
-grayscale($color);  /* returns grayscale of $color */
+    
+grayscale($color);    /* returns grayscale of $color */
 complement($color); /* returns complement color of $color */
-invert($color);     /* returns inverted color of $color */
-  
+invert($color);         /* returns inverted color of $color */
+    
 mix($color1, $color2, 50%); /* mix $color1 with $color2 with a weight of 50% */
-~~~
+{% endhighlight %}
 上面只是简单列了Sass的一些基本颜色处理函数，完整列表请看[Sass Documentation](http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html)。
 	
 颜色函数可以运用到任何一个元素上，只要其有颜色的属性，下面是一个具体的例子：
 
-~~~ css
+{% highlight css %}
 $color: #0982C1;
-  
+    
 h1 {
-  background: $color;
-  border: 3px solid darken($color, 50%);
+    background: $color;
+    border: 3px solid darken($color, 50%);
 }
-~~~
+{% endhighlight %}
 		
 ## LESS
 
-~~~ css
+{% highlight css %}
 lighten(@color, 10%); /* returns a color 10% lighter than @color */
-darken(@color, 10%);  /* returns a color 10% darker than @color */
-  
-saturate(@color, 10%);   /* returns a color 10% more saturated than @color */
+darken(@color, 10%);    /* returns a color 10% darker than @color */
+    
+saturate(@color, 10%);     /* returns a color 10% more saturated than @color */
 desaturate(@color, 10%); /* returns a color 10% less saturated than @color */
-  
-spin(@color, 10);  /* returns a color with a 10 degree larger in hue than @color */
+    
+spin(@color, 10);    /* returns a color with a 10 degree larger in hue than @color */
 spin(@color, -10); /* returns a color with a 10 degree smaller hue than @color */
-  
+    
 mix(@color1, @color2); /* return a mix of @color1 and @color2 */
-~~~
+{% endhighlight %}
 
 LESS完整的颜色函数列表请看[LESS Documentation](http://lesscss.org/#-color-functions)。
 LESS使用颜色函数的例子：
 
-~~~ css
+{% highlight css %}
 @color: #0982C1;
-  
+    
 h1 {
-  background: @color;
-  border: 3px solid darken(@color, 50%);
+    background: @color;
+    border: 3px solid darken(@color, 50%);
 }
-~~~
+{% endhighlight %}
 
 ## Stylus
 
-~~~ css
+{% highlight css %}
 lighten(color, 10%); /* returns a color 10% lighter than 'color' */
-darken(color, 10%);  /* returns a color 10% darker than 'color' */
-  
-saturate(color, 10%);   /* returns a color 10% more saturated than 'color' */
+darken(color, 10%);    /* returns a color 10% darker than 'color' */
+    
+saturate(color, 10%);     /* returns a color 10% more saturated than 'color' */
 desaturate(color, 10%); /* returns a color 10% less saturated than 'color' */
-~~~
+{% endhighlight %}
 完整的颜色函数列表请阅读[Stylus Documentation](http://learnboost.github.com/stylus/docs/bifs.html)。
 
 # 运算符
 你可以直接在CSS预处理器中进行样式的计算，比如：
 
-~~~ css
+{% highlight css %}
 body {
-  margin: (14px/2);
-  top: 50px + 100px;
-  right: 100px - 50px;
-  left: 10 * 10;
+    margin: (14px/2);
+    top: 50px + 100px;
+    right: 100px - 50px;
+    left: 10 * 10;
 }
-~~~
+{% endhighlight %}
 再例如：
 
-~~~ css
+{% highlight css %}
 @base_margin: 10px;
 @double_margin: @base_margin * 2;
 @full_page: 960px;
 @half_page: @full_page / 2;
 @quarter_page: (@full_page / 2) / 2; 
-~~~
+{% endhighlight %}
 
 上面代码是LESS的运算示例，声明一下，在取得”@quarter_page“变量时，我们可以直接除以4，但是在这里，我们只是想演示一下圆括号组成的”运算顺序“。在复合型运算中，小括号是很有必要的。
 	
@@ -871,54 +871,54 @@ Stylus的运算是三款处理器语言中最强大的一款，他拥有其他�
 
 ## Sass
 
-~~~ css
+{% highlight css %}
 @mixin border-radius($values) {
-  -webkit-border-radius: $values;
-     -moz-border-radius: $values;
-          border-radius: $values;
+    -webkit-border-radius: $values;
+         -moz-border-radius: $values;
+                    border-radius: $values;
 }
-  
+    
 div {
-  @ include border-radius(10px);
+    @ include border-radius(10px);
 }
-~~~
+{% endhighlight %}
 
 ## LESS
 
-~~~ css
+{% highlight css %}
 .border-radius(@values) {
-  -webkit-border-radius: @values;
-     -moz-border-radius: @values;
-          border-radius: @values;
+    -webkit-border-radius: @values;
+         -moz-border-radius: @values;
+                    border-radius: @values;
 }
-  
+    
 div {
-  .border-radius(10px);
+    .border-radius(10px);
 }
-~~~
+{% endhighlight %}
 
 ## Stylus
 
-~~~ css
+{% highlight css %}
 border-radius(values) {
-  -webkit-border-radius: values;
-     -moz-border-radius: values;
-          border-radius: values;
+    -webkit-border-radius: values;
+         -moz-border-radius: values;
+                    border-radius: values;
 }
-  
+    
 div {
-  border-radius(10px);
+    border-radius(10px);
 }
-~~~
+{% endhighlight %}
 编译结果：
 
-~~~ css
+{% highlight css %}
 div {
-  -webkit-border-radius: 10px;
-     -moz-border-radius: 10px;
-          border-radius: 10px;
+    -webkit-border-radius: 10px;
+         -moz-border-radius: 10px;
+                    border-radius: 10px;
 }
-~~~
+{% endhighlight %}
 
 
 # 错误报告
@@ -942,203 +942,203 @@ Stylus除了以上两种注释之外，他还有一种注释，叫做多行缓�
 ### Sass的条件语句
 Sass样式中的条件语句和其它编程语言的条件语句非常相似，在样式中可以使用”@if“来进行判断：
 
-~~~ css
+{% highlight css %}
 p {
-  @if 1 + 1 == 2 { border: 1px solid;  }
-  @if 5 < 3      { border: 2px dotted; }
-  @if null       { border: 3px double; }
+    @if 1 + 1 == 2 { border: 1px solid;    }
+    @if 5 < 3            { border: 2px dotted; }
+    @if null             { border: 3px double; }
 }
-~~~
+{% endhighlight %}
 编译出来的CSS：
 
-~~~ css
+{% highlight css %}
 p {
-  border: 1px solid; 
+    border: 1px solid; 
 }
-~~~
+{% endhighlight %}
 在Sass中条件语句还可以和@else if 、@else配套使用：
 
-~~~css
+{% highlight css %}
 $type: monster;
 p {
-  @if $type == ocean {
-    color: blue;
-  } @else if $type == matador {
-    color: red;
-  } @else if $type == monster {
-    color: green;
-  } @else {
-    color: black;
-  }
+    @if $type == ocean {
+        color: blue;
+    } @else if $type == matador {
+        color: red;
+    } @else if $type == monster {
+        color: green;
+    } @else {
+        color: black;
+    }
 }
-~~~
+{% endhighlight %}
 转译出来的CSS：
 
-~~~ css
-p {color:green;}    
-~~~	
+{% highlight css %}
+p {color:green;}        
+{% endhighlight %}	
 	
 ### Stylus条件语句
 Stylus的条件语句的使用和其它编程的条件语句使用基本能累死，不同的是他可以在样式中省略大括号（{}）：
 
-~~~ css
+{% highlight css %}
 box(x, y, margin = false)
-  padding y x
-  if margin
-    margin y x
+    padding y x
+    if margin
+        margin y x
 body
-  box(5px, 10px, true)  
-~~~
+    box(5px, 10px, true)    
+{% endhighlight %}
 Stylus同样可以和else if 、else配套使用：
 
-~~~ css
+{% highlight css %}
 box(x, y, margin-only = false)
-  if margin-only
-    margin y x
-  else
-    padding y x 
-~~~
+    if margin-only
+        margin y x
+    else
+        padding y x 
+{% endhighlight %}
 Stylus除了这种简单的条件语句应用之外，他还支持后缀条件语句。这就意味着if和unless可以使用，unless基本上与if相反，本质上是“(!(expr))”。
 	
 例如，我们定义了negative（）来执行一些基本的检查。下面我们使用块式条件：
 
-~~~ css
+{% highlight css %}
 negative(n)
-  unless n is a 'unit'
-    error('无效数值')
-  if n < 0
-    yes
-  else
-    no  
-~~~
+    unless n is a 'unit'
+        error('无效数值')
+    if n < 0
+        yes
+    else
+        no    
+{% endhighlight %}
 接下来，我们利用后缀条件让我们的方法更加简洁：
 
-~~~ css
+{% highlight css %}
 negative(n)
-  error('无效数值') unless n is a 'unit'
-  return yes if n < 0
-  no    
-~~~
+    error('无效数值') unless n is a 'unit'
+    return yes if n < 0
+    no        
+{% endhighlight %}
 当然，我们可以更进一步。如这个“n < 0 ? yes : no”可以用布尔代替：“n < 0”。后缀条件适合于大多数的单行语句。如“@import,@charset”混合书写等。当然，下面所示的属性也是可以的：
 
-~~~ css
+{% highlight css %}
 pad(types = margin padding, n = 5px)
-  padding unit(n, px) if padding in types
-  margin unit(n, px) if margin in types
+    padding unit(n, px) if padding in types
+    margin unit(n, px) if margin in types
 
 body
-  pad()
+    pad()
 
 body
-  pad(margin)
+    pad(margin)
 
 body
-  apply-mixins = true
-  pad(padding, 10) if apply-mixins  
-~~~
+    apply-mixins = true
+    pad(padding, 10) if apply-mixins    
+{% endhighlight %}
 上面代码转译出来的CSS：
 
-~~~ css
+{% highlight css %}
 body {
-  padding: 5px;
-  margin: 5px;
+    padding: 5px;
+    margin: 5px;
 }
 body {
-  margin: 5px;
+    margin: 5px;
 }
 body {
-  padding: 10px;
+    padding: 10px;
 }
-~~~
+{% endhighlight %}
 
 ### LESS的条件语句
 LESS的条件语句使用有些另类，它不是我们常见的关键词if和else if之类，而其实现方式是利用关键词“when”。
 
-~~~ css
+{% highlight css %}
 .mixin (@a) when (@a >= 10) { 
-  background-color: black; 
+    background-color: black; 
 } 
 .mixin (@a) when (@a < 10) { 
-  background-color: white; 
+    background-color: white; 
 } 
 .class1 { .mixin(12) } 
-.class2 { .mixin(6) }  
-~~~
+.class2 { .mixin(6) }    
+{% endhighlight %}
 
 转译出来的CSS：
 
-~~~ css
+{% highlight css %}
 .class1 { 
-  background-color: black; 
+    background-color: black; 
 } 
 .class2 { 
-  background-color: white; 
+    background-color: white; 
 }
-~~~
+{% endhighlight %}
 利用when以及<、>、=、<=、>=是十分简单和方便的。LESS并没有停留在这里，而且提供了很多类型检查函数来辅助条件表达式，例如：iscolor、isnumber、isstring、iskeyword、isurl等等。
 
-~~~ css
+{% highlight css %}
 .mixin (@a) when (iscolor(@a)) { 
-  background-color: black; 
+    background-color: black; 
 } 
 .mixin (@a) when (isnumber(@a)) { 
-  background-color: white; 
+    background-color: white; 
 } 
 .class1 { .mixin(red) } 
-.class2 { .mixin(6) }  
-~~~
+.class2 { .mixin(6) }    
+{% endhighlight %}
 转译出来的CSS：
 
-~~~ css
+{% highlight css %}
 .class1 { 
-  background-color: black; 
+    background-color: black; 
 } 
 .class2 { 
-  background-color: white; 
+    background-color: white; 
 }
-~~~
+{% endhighlight %}
 另外，LESS的条件表达式同样支持AND、OR、NOT来组合条件表达式，这样可以组织成更为强大的条件表达式。需要特别指出的一点是，OR在LESS中并不是or关键词，而是用“，”来表示or的逻辑关系。
 
-~~~ css
+{% highlight css %}
 .smaller (@a, @b) when (@a > @b) { 
-  background-color: black; 
+    background-color: black; 
 } 
 .math (@a) when (@a > 10) and (@a < 20) { 
-  background-color: red; 
+    background-color: red; 
 } 
-.math (@a) when (@a < 10)，(@a > 20) { 
-  background-color: blue; 
+.math (@a) when (@a < 10),(@a > 20) { 
+    background-color: blue; 
 } 
-.math (@a) when not (@a = 10)  { 
-  background-color: yellow; 
+.math (@a) when not (@a = 10)    { 
+    background-color: yellow; 
 } 
-.math (@a) when (@a = 10)  { 
-  background-color: green; 
+.math (@a) when (@a = 10)    { 
+    background-color: green; 
 } 
 
 .testSmall {.smaller(30, 10) } 
 .testMath1 {.math(15)} 
 .testMath2 {.math(7)} 
 .testMath3 {.math(10)}
-~~~
+{% endhighlight %}
 转译出来的CSS：
 
-~~~ css
+{% highlight css %}
 .testSmall { 
-  background-color: black; 
+    background-color: black; 
 } 
 .testMath1 { 
-  background-color: red; 
-  background-color: yellow; 
+    background-color: red; 
+    background-color: yellow; 
 } 
 .testMath2 { 
-  background-color: blue; 
-  background-color: yellow; 
+    background-color: blue; 
+    background-color: yellow; 
 } 
 .testMath3 { 
-  background-color: green; 
+    background-color: green; 
 }
-~~~		
+{% endhighlight %}		
 
 ## 循环语句
 Sass和Stylus还支持for循环语句，而LESS并没支持for循环语句，但值得庆幸的是，在LESS中可以使用When来模拟出for循环的特性。
@@ -1146,130 +1146,130 @@ Sass和Stylus还支持for循环语句，而LESS并没支持for循环语句，但
 ### Sass的循环语句
 Sass中使用for循环语句需要使用@for，并且配合“from”和“through”一起使用，其基本语法：
 
-~~~ css
-@for $var from <start> through <end> {语句块}  
-~~~
+{% highlight css %}
+@for $var from <start> through <end> {语句块}    
+{% endhighlight %}
 
 看一个简单的例子：
 
-~~~ css
+{% highlight css %}
 @for $i from 1 through 3 {
-  .item-#{$i} { width: 2em * $i; }
+    .item-#{$i} { width: 2em * $i; }
 }
-~~~
+{% endhighlight %}
 转译出来的CSS代码：
 
-~~~ css
-.item-1 {  width: 2em; }
-.item-2 {  width: 4em; }
-.item-3 {  width: 6em; }
-~~~
+{% highlight css %}
+.item-1 {    width: 2em; }
+.item-2 {    width: 4em; }
+.item-3 {    width: 6em; }
+{% endhighlight %}
 在Sass中循环语句除了@for语句之外，还有@each语句和@while语句
 	
 @each循环语法：
 
-~~~ css
-@each $var in <list>{语句块}    
-~~~
+{% highlight css %}
+@each $var in <list>{语句块}        
+{% endhighlight %}
 
 简单的例子：
 
-~~~ css
+{% highlight css %}
 @each $animal in puma, sea-slug, egret, salamander {
-  .#{$animal}-icon {
-    background-image: url('/images/#{$animal}.png');
-  }
-}   
-~~~
+    .#{$animal}-icon {
+        background-image: url('/images/#{$animal}.png');
+    }
+}     
+{% endhighlight %}
 转译出来的CSS：
 
-~~~ css
-.puma-icon {  background-image: url('/images/puma.png'); }
-.sea-slug-icon {  background-image: url('/images/sea-slug.png'); }
-.egret-icon {  background-image: url('/images/egret.png'); }
-.salamander-icon {  background-image: url('/images/salamander.png') }
-~~~
+{% highlight css %}
+.puma-icon {    background-image: url('/images/puma.png'); }
+.sea-slug-icon {    background-image: url('/images/sea-slug.png'); }
+.egret-icon {    background-image: url('/images/egret.png'); }
+.salamander-icon {    background-image: url('/images/salamander.png') }
+{% endhighlight %}
 @while循环使用和其它编程语言类似：
 
-~~~ css
+{% highlight css %}
 $i: 6;
 @while $i > 0 {
-  .item-#{$i} { width: 2em * $i; }
-  $i: $i - 2;
+    .item-#{$i} { width: 2em * $i; }
+    $i: $i - 2;
 }
-~~~
+{% endhighlight %}
 转译出来的CSS：
 
-~~~ css
-.item-6 {  width: 12em; }
-.item-4 {  width: 8em; }
-.item-2 {  width: 4em; }
-~~~
+{% highlight css %}
+.item-6 {    width: 12em; }
+.item-4 {    width: 8em; }
+.item-2 {    width: 4em; }
+{% endhighlight %}
 
 ### Stylus的循环语句
 在Stylus样式中通过for/in对表达式进行循环，形式如下：
 
-~~~ css
-for <val-name> [, <key-name>] in <expression>  
-~~~
+{% highlight css %}
+for <val-name> [, <key-name>] in <expression>    
+{% endhighlight %}
 例如：
 
-~~~ css
+{% highlight css %}
 body
-  for num in 1 2 3
-    foo num
-~~~
+    for num in 1 2 3
+        foo num
+{% endhighlight %}
 转译出来的CSS：
 
-~~~ css
+{% highlight css %}
 body {
-  foo: 1;
-  foo: 2;
-  foo: 3;
+    foo: 1;
+    foo: 2;
+    foo: 3;
 }
-~~~
+{% endhighlight %}
 下面这个例子演示了如何使用<key-name>：
 
-~~~ css
+{% highlight css %}
 body
-  fonts = Impact Arial sans-serif
-  for font, i in fonts
-    foo i font
-~~~
+    fonts = Impact Arial sans-serif
+    for font, i in fonts
+        foo i font
+{% endhighlight %}
 转译出来的CSS：
 
-~~~ css
+{% highlight css %}
 body {
-  foo: 0 Impact;
-  foo: 1 Arial;
-  foo: 2 sans-serif;
+    foo: 0 Impact;
+    foo: 1 Arial;
+    foo: 2 sans-serif;
 }
-~~~	
+{% endhighlight %}	
 
 ### LESS的循环语句
 在LESS语言中并没有现在的循环语句，可是像其条件语句一样，通过when来模拟出他的循环功能。
 
-~~~ css
+{% highlight css %}
 .loopingClass (@index) when (@index > 0) {
-  .myclass {
-    z-index: @index;
-  }
-  // 递归
-  .loopingClass(@index - 1);
+    .myclass {
+        z-index: @index;
+    }
+    // 递归
+    .loopingClass(@index - 1);
 }
 // 停止循环
 .loopingClass (0) {}
 
 // 输出
-.loopingClass (3);  
-~~~
+.loopingClass (3);    
+{% endhighlight %}
 转译出的CSS：
 
-~~~ css
+{% highlight css %}
 .myclass {z-index: 3;}
 .myclass {z-index: 2;}
-.myclass {z-index: 1;}  
-~~~
+.myclass {z-index: 1;}    
+{% endhighlight %}
 相比之下，Sass和Stylus对条件语句和循环语句的处理要比LESS语言强大。音位他们具有真正的语言处理能力。
 
 # 参考文章

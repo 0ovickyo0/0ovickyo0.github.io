@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "一片包含图片的文章"
+title: "一篇包含图片的文章"
 description: "用于显示图片的示例文章。"
 tags: [sample post, images, test]
 ---
