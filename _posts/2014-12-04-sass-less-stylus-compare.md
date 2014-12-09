@@ -858,7 +858,7 @@ body {
 @full_page: 960px;
 @half_page: @full_page / 2;
 @quarter_page: (@full_page / 2) / 2; 
-~~~ 
+~~~
 
 上面代码是LESS的运算示例，声明一下，在取得”@quarter_page“变量时，我们可以直接除以4，但是在这里，我们只是想演示一下圆括号组成的”运算顺序“。在复合型运算中，小括号是很有必要的。
 	
@@ -1274,10 +1274,11 @@ body {
 
 # 参考文章
 感谢以下作者为我们带来的高质量的文章：
-*[为您详细比较三个CSS预处理器（框架）：Sass、LESS和Stylus](http://www.oschina.net/question/12_44255)
-*[Sass vs. LESS vs. Stylus: Preprocessor Shootout](http://code.tutsplus.com/tutorials/sass-vs-less-vs-stylus-a-preprocessor-shootout--net-24320)
-*[Sass vs. LESS](http://css-tricks.com/sass-vs-less/)
-*[CSS预处理器---Sass、LESS和Stylus实践](http://www.w3cplus.com/css/css-preprocessor-sass-vs-less-stylus-2.html)
-*[SASS用法指南-阮一峰](http://www.ruanyifeng.com/blog/2012/06/sass.html)
-*[CSS的预处理程序（Sass、LESS、Stylus等）分别有哪些优缺点](http://www.zhihu.com/question/20300388)
+
+* [为您详细比较三个CSS预处理器（框架）：Sass、LESS和Stylus](http://www.oschina.net/question/12_44255)
+* [Sass vs. LESS vs. Stylus: Preprocessor Shootout](http://code.tutsplus.com/tutorials/sass-vs-less-vs-stylus-a-preprocessor-shootout--net-24320)
+* [Sass vs. LESS](http://css-tricks.com/sass-vs-less/)
+* [CSS预处理器---Sass、LESS和Stylus实践](http://www.w3cplus.com/css/css-preprocessor-sass-vs-less-stylus-2.html)
+* [SASS用法指南-阮一峰](http://www.ruanyifeng.com/blog/2012/06/sass.html)
+* [CSS的预处理程序（Sass、LESS、Stylus等）分别有哪些优缺点](http://www.zhihu.com/question/20300388)
 
