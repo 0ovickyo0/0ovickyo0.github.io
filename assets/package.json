@@ -1,0 +1,22 @@
+{
+  "name": "vicky-blog",
+  "author": "Vicky <15871414122@126.com>",
+  "homepage": "http://0ovickyo0.uni.me",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0ovickyo0/0ovickyo0.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/0ovickyo0/0ovickyo0.github.io/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-less": "~0.12.0"
+  }
+}
