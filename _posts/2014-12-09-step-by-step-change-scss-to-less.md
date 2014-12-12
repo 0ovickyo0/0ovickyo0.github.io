@@ -22,6 +22,8 @@ sass:
 # Step1. 观察
 在做更改之前，我们需要先观察项目结构以及了解我们需要做哪些修改。
 
+<!--more-->
+
 最后的样式文件_site/asset中应该是这样的结构：
 <figure>
 	<a href="/images/post/2014-12-09-1.png"><img src="/images/post/2014-12-09-1.png" alt=""></a>
