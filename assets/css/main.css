@@ -1595,6 +1595,10 @@ svg:not(:root) {
 .dl-menuwrapper li .dl-submenu {
   display: none;
 }
+.dl-menuwrapper li .dl-submenu h4,
+.dl-menuwrapper li .dl-submenu p {
+  color: #ffffff;
+}
 /*
 When a submenu is openend, we will hide all li siblings.
 For that we give a class to the parent menu called "dl-subview".
