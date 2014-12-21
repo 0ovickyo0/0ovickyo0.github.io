@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>除去字符串中的空格</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body style="text-align: center">
+    <div>
+        <p>说明：</p>
+        <p>    去除输入的字符串的两端中间的空白，包括空格、制表符(Tab)、换行符，中文全角空格等</p>
+        <p>用到的知识：</p>
+        <p>    1.从DOM元素获得值。</p>
+        <p>    2.正则表达式：</p>
+        <p>        +：重复一次或更多次</p>
+        <p>        \s：匹配任意空白符，包括空格，制表符（Tab），换行符，中文全角空格等</p>
+        <p>        \u00A0：不间断空格</p>
+        <p>        |：分支条件，不同的规则</p>
+        <p>        \g：替换所有的匹配</p>
+    </div>
+    <hr>
+    <div>
+        <label for="input">用户名：</label><input type="text" value="[   需要过滤的空格   ]" name="" class="input" id="input"/>
+        <button id="btn">过滤</button>
+    </div>
+
+    <script>
+        (function(){
+            var input = document.getElementById('input');
+            var btn = document.getElementById('btn');
+            btn.onclick = function(){
+                input.value=input.value.replace(/(\s|\u00A0)+|(\s|\u00A0)+/g,'');
+            }
+        }());
+    </script>
+</body>
+
+</html>
