@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>关闭用户中文输入法</title>
+</head>
+
+<body style="text-align: center">
+<div>
+    <p>说明：</p>
+    <p>    禁止用户的中文输入法。</p>
+    <p>用到的知识：</p>
+    <p>    1.获得输入法：</p>
+    <p>        domObject.style.imeMode</p>
+    <p>        如：</p>
+    <p>            document.body.style.imeMode - 页面输入法状态</p>
+    <p>    2.ime-mode：（chrome无效，firefox有效，IE有效，360无效）</p>
+    <p>        语法：</p>
+    <p>        ime-mode : auto | active | inactive | disabled</p>
+    <p>        参数：</p>
+    <p>        auto : 不影响IME的状态。与不指定ime-mode属性时相同</p>
+    <p>        active : 指定所有使用IME输入的字符。即激活本地语言输入法(可简单理解为输入法为中文)。用户仍可以撤销激活IME</p>
+    <p>        inactive : 指定所有不使用IME输入的字符。即激活非本地语言(可简单理解为输入法为英文)。用户仍可以撤销激活IME</p>
+    <p>        disabled : 完全禁用IME。对于有焦点的控件（如输入框），用户不可以激活IME(可简单理解为关闭输入法)</p>
+    <p>    3.\u4e00-\u9fa5汉字编码范围</p>
+    <p>    4.以下3个input都可以使用js事件响应。其中，备注的输入框在firefox，IE下即使没有js事件，也是正常的。</p>
+</div>
+<hr>
+<div>
+
+    <label for="username">用户名：</label><input type="text" value="" data-ime="1" name="username" class="username" id="username"/>
+    <label for="password">密码：</label><input type="text" value="" name="password" class="password" id="password"/>
+    <label for="notes">备注：</label><input type="text" style="ime-mode:disabled" value="" name="notes" class="notes" id="notes">
+
+
+</div>
+
+<script>
+    (function(){
+        var input = document.getElementsByTagName('input');
+        for(var i=0;i<input.length;i++){
+            input[i].onfocus = function(){
+                if(this.getAttribute('data-ime')){
+                    this.style.imeMode = 'disabled';
+                }
+            }
+            //如果input没有imeMode属性，使用正则进行替换
+            if(input[i].style.imeMode == undefined){
+                input[i].onkeyup = input[i].onblur = function(){
+                    this.value = this.value.replace(/[\u4e00-\u9fa5]/g,'');
+                }
+            }
+        }
+    }());
+</script>
+</body>
+
+</html>
