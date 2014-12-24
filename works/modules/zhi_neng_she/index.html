@@ -1,0 +1,173 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>智能社学习小demo</title>
+
+    <link id="color-schema" rel="stylesheet" type="text/css" href="color_schema1.css" />
+
+    <style>
+        .lesson1{
+            background-color: #ddf3ff;
+        }
+        .lesson1 #security-text{
+                display: none;
+                width: 200px;
+                height: 150px;
+                background: #ccc;
+        }
+        .lesson1 #square{
+            width: 100px;
+            height: 100px;
+            background: #ffc0cb;
+        }
+        .lesson2{
+            clear: both;
+            background-color: #f0dad2;
+        }
+        .lesson2 #demo6-div{
+            width: 50px;
+            height: 50px;
+            background-color: #ffc0cb;
+        }
+        .lesson2 #demo7-div{
+            background-color: #8fbc8f;
+        }
+        .lesson2 .demo7{
+            width: 200px;
+            height: 50px;
+            background-color: #ffc0cb;
+        }
+        /*.lesson3{
+            background-color: #d7fff0;
+        }
+        .lesson4{
+            background-color: #d5f3f4;
+        }
+        .lesson5{
+            background-color: #fbfbea;
+        }*/
+
+    </style>
+</head>
+
+<body>
+    <div class="lesson1">
+        <h1>Demo1.悬停效果</h1>
+        <label for="check">记住密码</label><input type="checkbox" id="check" onmouseover="mouseOver()" onmouseout="mouseOut()"/>
+        <div id="security-text" style="display: none"><p>为了您的安全....</p></div>
+
+        <hr>
+        <h1>Demo2.方块变化效果</h1>
+        <div id="square" onmouseover="toBig()" onmouseout="toSmall()"></div>
+
+        <hr>
+        <h1>Demo3.换肤效果</h1>
+        <p>方法：通过修改link的href的值</p>
+        <button id="color-schema-1" onclick="colorSchema1()">方案一</button>
+        <button id="color-schema-2" onclick="colorSchema2()">方案二</button>
+
+        <hr>
+        <h1>Demo4.修改文字value,title</h1>
+        <label for="change-word"></label><input type="text" id="change-word" name="change-word"/>
+        <button id="change-word-btn" onclick="changeValue()">改变value和title</button>
+
+
+        <hr>
+        <h1>Demo5.点击显示隐藏</h1>
+        <p>方法：用到if判断元素是否存在</p>
+        <button id="show-hide" onclick="showHied()">显示/隐藏</button>
+        <div id="show-hide-div" style="display:none; width: 200px;height: 100px; background-color: #ffc0cb"><p>Hello</p></div>
+    </div>
+
+    <div class="lesson2">
+        <h1>Demo6.2种操作属性的方法</h1>
+        <p>说明：实现div的变宽变高变绿，document.getElementById.value = 'xxx' 或者 document.getElementById.style['value']</p>
+        <button onclick="changeStyle('width',200)">变宽</button>
+        <button onclick="changeStyle('height',200)">变高</button>
+        <button onclick="changeStyle('background-color', '#8fbc8f')">变绿</button>
+        <div id="demo6-div"></div>
+
+        <hr>
+        <h1>Demo7.style样式的读写</h1>
+        <p>说明：使用domObject.style.xxx进行样式的读写，只能是行间，内联的样式，不能是外部样式表。</p>
+        <p>在使用className 和 style 改写样式的时候，要么全部使用className，要么全部使用 style。不要两者混用</p>
+        <p>优先级：内联样式>id样式>class样式</p>
+        <div id="demo7-div"><p>这仅仅是个占位符</p></div>
+        <button onclick="changeInline()">使用内联改变样式</button>
+        <button onclick="changeCName()">使用className改变样式</button>
+
+        <hr>
+        <h1>Demo8.提取行间事件</h1>
+        <p>说明：将事件也看做是元素的一个属性，domObject.onclick = function(){...}...</p>
+        <p>需要在window.onload事件完成之后，才能注册，因为需要等待dom元素加载出来，才能够添加事件</p>
+        <button id="demo8-btn">提取行间事件</button>
+
+        <hr>
+        <h1>Demo9.全选，不选，反选</h1>
+        <p>说明：checkbox的全选，不选，反选。应用循环和判断</p>
+
+    </div>
+
+
+<script class="lesson1">
+    function mouseOver(){
+        document.getElementById('security-text').style.display='block';
+    }
+    function mouseOut(){
+        document.getElementById('security-text').style.display='none';
+    }
+    function toBig(){
+        document.getElementById('square').style.width=200;
+        document.getElementById('square').style.height=200;
+        document.getElementById('square').style.background='#00bfff';
+    }
+    function toSmall(){
+        document.getElementById('square').style.width=100;
+        document.getElementById('square').style.height=100;
+        document.getElementById('square').style.background='#ffc0cb';
+    }
+    function colorSchema1(){
+        document.getElementById('color-schema').href='color_schema1.css';
+    }
+    function colorSchema2(){
+        document.getElementById('color-schema').href='color_schema2.css';
+    }
+    function changeValue(){
+        document.getElementById('change-word').value = '你好';
+        document.getElementById('change-word').title = '你今天好么';
+    }
+    function showHied(){
+        var div0 = document.getElementById('show-hide-div');
+        if(div0.style.display == 'block'){
+            div0.style.display = 'none';
+        }else {
+            div0.style.display = 'block';
+        }
+    }
+</script>
+
+<script class="lesson2">
+    function changeStyle(name, value){
+        var div0 = document.getElementById('demo6-div');
+        div0.style[name] = value;
+    }
+    function changeInline(){
+        var div0 = document.getElementById('demo7-div');
+        div0.style.height=300;
+    }
+    function changeCName(){
+        var div0 = document.getElementById('demo7-div');
+        div0.className = "demo7";
+    }
+    window.onload = function(){
+        document.getElementById('demo8-btn').onclick = function(){
+            alert('demo8-btn事件')
+        };
+    }
+
+</script>
+
+</body>
+
+</html>
