@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>智能社学习小demo</title>
+    <title>智能社学习demo(1)</title>
 
     <link id="color-schema" rel="stylesheet" type="text/css" href="color_schema1.css" />
 
@@ -38,20 +38,27 @@
             height: 50px;
             background-color: #ffc0cb;
         }
-        /*.lesson3{
+        .lesson2 .active{
+            background-color: seagreen;
+        }
+        .lesson3{
             background-color: #d7fff0;
         }
-        .lesson4{
-            background-color: #d5f3f4;
+        .lesson3 #demo12-div{
+            height: 50px;
+            width: 100px;
+            background-color: #ff84e4;
         }
-        .lesson5{
-            background-color: #fbfbea;
-        }*/
 
     </style>
 </head>
 
 <body>
+    <div>
+        <h1>智能社JavaScript学习Demo(1)</h1>
+
+    </div>
+
     <div class="lesson1">
         <h1>Demo1.悬停效果</h1>
         <label for="check">记住密码</label><input type="checkbox" id="check" onmouseover="mouseOver()" onmouseout="mouseOut()"/>
@@ -106,8 +113,78 @@
         <hr>
         <h1>Demo9.全选，不选，反选</h1>
         <p>说明：checkbox的全选，不选，反选。应用循环和判断</p>
+        <input type="checkbox" id="check-all" name="check-all"><label for="check-all">全选</label>
+        <input type="checkbox" id="uncheck-all" name="uncheck-all"><label for="uncheck-all">不选</label>
+        <input type="checkbox" id="invert-all" name="invert-all"><label for="invert-all">反选</label>
+        <div id="demo9-checkbox">
+            <input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox">
+            <input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox">
+        </div>
+
+        <hr>
+        <h1>Demo10.选项卡</h1>
+        <p>说明：通过改变button的className来区别其是否被选中，被选中的按钮具有'active'的className</p>
+        <p>如果想给一个标签加上自定义的属性名（如index），一定要通过js的方式来指定，html标签指定的在某些浏览器是不行的。</p>
+        <div id="demo10-btn">
+            <button>新闻</button>
+            <button>网页</button>
+            <button>贴吧</button>
+            <button>知道</button>
+        </div>
+        <div id="demo10-div">
+            <div style="display: block;">新闻新闻新闻</div>
+            <div style="display: none;">网页网页网页</div>
+            <div style="display: none;">贴吧贴吧贴吧</div>
+            <div style="display: none;">知道知道知道</div>
+        </div>
+
+        <hr>
+        <h1>Demo11.年历</h1>
+        <div id="demo11">
+            <ul>
+                <li>一月</li><li>二月</li><li>三月</li><li>四月</li>
+            </ul>
+            <div id="demo11-div">
+                <p>一月...</p>
+            </div>
+
+        </div>
 
     </div>
+
+    <div class="lesson3">
+        <h1>Demo12.获取元素CSS样式</h1>
+        <p>说明：IE下使用domObject.currentStyle.width来获取当前元素样式</p>
+        <p>Chrome Firefox使用getComputedStyle(domObject).width来获取元素当前样式</p>
+        <p>这些方法，都只能获取单一样式（width，height，background-color），不能获取复合样式（background，padding）</p>
+        <button id="demo12-btn">获取下面div的宽度</button>
+        <div id="demo12-div"></div>
+
+        <br>
+
+        <h1>Demo13.数组操作push，pop，shift，unshift，splice，concat，join，sort</h1>
+        <p>说明：</p>
+        <p>arr.push(a)：尾部加入新元素a</p>
+        <p>arr.pop():尾部取出一个元素</p>
+        <p>arr.unshift(a)：头部插入新元素a</p>
+        <p>arr.shift()：头部取出元素</p>
+        <p>splice(i1,i2,o1,o2,i3)：参数必有2个，第一个起始位置，第二个要删除的长度，第三个往后是从起始位置添加的元素</p>
+        <p>arr1.concat(arr2)：[arr1[0],arr1[1],...,arr2[0],...]数组链接</p>
+        <p>arr.join('@@')：数组转换成字符串arr1[0]@@arr1[1]@@...</p>
+        <p>arr.sort：排序，按照字符串的顺序，如果想要排序数字，需要自己传入值</p>
+
+        <h1>Demo14.定时器</h1>
+        <p>说明：</p>
+        <p>可以反复执行的：</p>
+        <p>var timer = setInterval(function(){}, 1000);</p>
+        <p>clearInterval(timer);</p>
+        <p>只执行一次的：</p>
+        <p>var timer = setTimeOut(function(){}, 1000);</p>
+        <p>clearTimeOut(timer);</p>
+
+    </div>
+
+
 
 
 <script class="lesson1">
@@ -164,9 +241,63 @@
         document.getElementById('demo8-btn').onclick = function(){
             alert('demo8-btn事件')
         };
-    }
+        document.getElementById('check-all').onclick = function(){
+            var checkbox_div = document.getElementById('demo9-checkbox').getElementsByTagName('input');
+            for(var i=0;i<checkbox_div.length;i++){
+                checkbox_div[i].checked = true;
+            }
+        };
+        document.getElementById('uncheck-all').onclick = function(){
+            var checkbox_div = document.getElementById('demo9-checkbox').getElementsByTagName('input');
+            for(var i=0;i<checkbox_div.length;i++){
+                checkbox_div[i].checked = false;
+            }
+        };
+        document.getElementById('invert-all').onclick = function(){
+            var checkbox_div = document.getElementById('demo9-checkbox').getElementsByTagName('input');
+            for(var i=0;i<checkbox_div.length;i++){
+                if(checkbox_div[i].checked == true)
+                    checkbox_div[i].checked = false;
+                else
+                    checkbox_div[i].checked = true;
+            }
+        };
+        var demo10_btns = document.getElementById('demo10-btn').getElementsByTagName('button');
+        for(var i =0;i<demo10_btns.length;i++){
+            demo10_btns[i].index = i; //添加自定义的属性，一定要在js中添加
+            demo10_btns[i].onclick = function(){
+                for(var j = 0;j<demo10_btns.length;j++){
+                    demo10_btns[j].className = ''; //去掉btn的选中样式
+                    document.getElementById('demo10-div').getElementsByTagName('div')[j].style.display = 'none'; //去掉div的show
+                }
+                this.className = 'active';
+                document.getElementById('demo10-div').getElementsByTagName('div')[this.index].style.display = 'block';
 
+            }
+
+        }
+
+        var demo11_li = document.getElementById('demo11').getElementsByTagName('li');
+        var demo11_p = ['一月...', '二月...','三月...', '四月...'];
+        for(var i =0;i<demo11_li.length;i++){
+            demo11_li[i].index = i;
+            demo11_li[i].onmouseover = function () {
+                console.log(demo11_p[this.index]);
+                document.getElementById('demo11-div').innerHTML = demo11_p[this.index];
+            }
+        }
+
+        //lesson3 的js代码
+        document.getElementById('demo12-btn').onclick = function(){
+            if(document.getElementById('demo12-div').currentStyle)
+                alert(document.getElementById('demo12-div').currentStyle.width); //100px
+            else
+                alert(getComputedStyle(document.getElementById('demo12-div')).width); //100px
+        };
+
+    }
 </script>
+
 
 </body>
 

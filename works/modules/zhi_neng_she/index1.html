@@ -1,0 +1,112 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>智能社学习Demo(2)</title>
+    <style>
+        .demo1 {
+            background-color: #ddf3ff;
+        }
+        .demo1 img{
+            width: 50px;
+            height: 50px;
+        }
+        .demo2 #demo2-div1{
+            width: 50px;
+            height: 50px;
+            background-color: #ffc0cb;
+        }
+        .demo2 #demo2-div2{
+            width: 80px;
+            height: 80px;
+            display: none;
+            float: left;
+            background-color: darkgoldenrod;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="demo1">
+        <h1>Demo1.数字时钟</h1>
+        <p>如果函数showTime不执行一次，而仅靠定时器，则会出现1s的延时。</p>
+        <p>解决办法是立即执行一次。</p>
+        <div id="clock-div">
+            <img src="img/2.png">
+            <img src="img/2.png">
+            :
+            <img src="img/2.png">
+            <img src="img/2.png">
+            :
+            <img src="img/2.png">
+            <img src="img/2.png">
+        </div>
+    </div>
+
+    <div class="demo2">
+        <h1>Demo2.延时提示框</h1>
+        <p>在红色div和灰色div之间移动鼠标试试效果</p>
+        <p>没有延时效果，鼠标一移出，div块就会消失</p>
+        <div id="demo2-div1"></div>
+        <div id="demo2-div2"></div>
+
+    </div>
+
+    <div class="demo3">
+        <h1>Demo3.无缝滚动</h1>
+        <ul>
+            <li><img src="img/1.jpg"></li>
+            <li><img src="img/2.jpg"></li>
+            <li><img src="img/3.jpg"></li>
+            <li><img src="img/4.jpg"></li>
+        </ul>
+
+    </div>
+
+<script class="demo1">
+
+    function toDouble(n){
+        if(n<10){
+            n = '0' + n;
+        }
+        return n+'';
+    }
+    function showTime(){
+        var date = new Date();
+        var oImgs = document.getElementById('clock-div').getElementsByTagName('img');
+        var s = toDouble(date.getHours()) + toDouble(date.getMinutes()) + toDouble(date.getSeconds());
+        for(var i=0;i<oImgs.length;i++){
+            oImgs[i].src = "img/" + s.charAt(i) + ".png";
+        }
+    }
+    window.onload = function(){
+        showTime(); //解决1s延时问题
+        setInterval(showTime,1000);
+
+
+        //demo2的js代码
+        var timer;
+        document.getElementById('demo2-div1').onmouseover = document.getElementById('demo2-div2').onmouseover
+                = function(){
+            document.getElementById('demo2-div2').style.display = 'block';
+            clearTimeout(timer);
+        };
+
+        document.getElementById('demo2-div1').onmouseout = document.getElementById('demo2-div2').onmouseout =function(){
+            timer = setTimeout(function(){
+                document.getElementById('demo2-div2').style.display = 'none';
+            }, 500);
+        };
+    };
+
+</script>
+
+<script class="demo2">
+
+</script>
+
+
+
+</body>
+
+</html>
