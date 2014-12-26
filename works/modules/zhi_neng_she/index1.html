@@ -22,7 +22,27 @@
             float: left;
             background-color: darkgoldenrod;
         }
-
+        .demo3 #demo3-div{
+            width: 600px;
+            height: 140px;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+            background-color: orangered;
+        }
+        .demo3 #demo3-div ul{
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        .demo3 #demo3-div ul li{
+            width: 160px;
+            height:140px;
+            list-style: none;
+            float: left;
+        }
     </style>
 </head>
 
@@ -42,7 +62,6 @@
             <img src="img/2.png">
         </div>
     </div>
-
     <div class="demo2">
         <h1>Demo2.延时提示框</h1>
         <p>在红色div和灰色div之间移动鼠标试试效果</p>
@@ -51,52 +70,161 @@
         <div id="demo2-div2"></div>
 
     </div>
-
     <div class="demo3">
         <h1>Demo3.无缝滚动</h1>
-        <ul>
-            <li><img src="img/1.jpg"></li>
-            <li><img src="img/2.jpg"></li>
-            <li><img src="img/3.jpg"></li>
-            <li><img src="img/4.jpg"></li>
-        </ul>
+        <div id="demo3-div">
+            <ul>
+                <li><img src="img/1.jpg"></li>
+                <li><img src="img/2.jpg"></li>
+                <li><img src="img/3.jpg"></li>
+                <li><img src="img/4.jpg"></li>
+            </ul>
+        </div>
+        <button id="demo3-left">←</button>
+        <button id="demo3-right">→</button>
+    </div>
+
+    <div class="demo4">
+        <h1>Demo4.DOM小知识</h1>
+        <p>在高级浏览器中（Chrome，Firefox，IE9+），oUl.childNodes 会计算包括没有标签包裹的文本节点在内的所有节点（文本节点+元素节点）</p>
+        <p>低版本浏览器（IE6-8），oUl.childNodes 只计算元素节点</p>
+        <p>高版本浏览器中计算正确节点数的办法：</p>
+        <p>使用nodeType来区分：oUl.childNode[i].nodeType = 1 元素节点, 3 文本节点</p>
+        <p>或者统一使用children属性：oUl.children（IE8正常，IE67未测）</p>
+        <p>-----</p>
+        <p>offsetParent：获取一个元素的用于定位的父元素节点</p>
+        <p>DOM获取元素，设置元素属性的方法</p>
+        <p>oTxt.setAttribute('value', 'aaa')</p>
+        <p>oTxt.getAttribute('value')</p>
+        <p>oTxt.removeAttribute('value')</p>
+        <div id="demo4-div">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
 
     </div>
 
+    <div class="demo5">
+        <h1>Demo5.创建 插入 删除 元素</h1>
+        <p>使用到的知识有:document.createElement('li)；oUl.appendChild(oLi)</p>
+        <p>倒序插入：父节点.insertBefore(新节点，参考节点)</p>
+        <p>删除节点：removeChild</p>
+        <div id="demo5-div">
+            <input id="demo5-input"/><button id="demo5-btn">添加</button>
+            <ul id="demo5-ul">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="demo6">
+        <h1>Demo6.文档碎片</h1>
+        <p>说明：document.createDocumentFragment()</p>
+        <p>IE67提高性能(仅插入操作)，高级浏览器基本无影响</p>
+        <button id="demo6-btn">创建1w个li</button>
+        <ul id="demo6-ul">
+
+        </ul>
+    </div>
+
 <script class="demo1">
-
-    function toDouble(n){
-        if(n<10){
-            n = '0' + n;
-        }
-        return n+'';
-    }
-    function showTime(){
-        var date = new Date();
-        var oImgs = document.getElementById('clock-div').getElementsByTagName('img');
-        var s = toDouble(date.getHours()) + toDouble(date.getMinutes()) + toDouble(date.getSeconds());
-        for(var i=0;i<oImgs.length;i++){
-            oImgs[i].src = "img/" + s.charAt(i) + ".png";
-        }
-    }
     window.onload = function(){
-        showTime(); //解决1s延时问题
-        setInterval(showTime,1000);
-
-
+        //demo1 代码
+        {
+            function toDouble(n){
+                if(n<10){
+                    n = '0' + n;
+                }
+                return n+'';
+            }
+            function showTime(){
+                var date = new Date();
+                var oImgs = document.getElementById('clock-div').getElementsByTagName('img');
+                var s = toDouble(date.getHours()) + toDouble(date.getMinutes()) + toDouble(date.getSeconds());
+                for(var i=0;i<oImgs.length;i++){
+                    oImgs[i].src = "img/" + s.charAt(i) + ".png";
+                }
+            }
+            showTime(); //解决1s延时问题
+            setInterval(showTime,1000);
+        }
         //demo2的js代码
-        var timer;
-        document.getElementById('demo2-div1').onmouseover = document.getElementById('demo2-div2').onmouseover
-                = function(){
-            document.getElementById('demo2-div2').style.display = 'block';
-            clearTimeout(timer);
-        };
+        {
+            var timer;
+            document.getElementById('demo2-div1').onmouseover = document.getElementById('demo2-div2').onmouseover
+                    = function(){
+                document.getElementById('demo2-div2').style.display = 'block';
+                clearTimeout(timer);
+            };
 
-        document.getElementById('demo2-div1').onmouseout = document.getElementById('demo2-div2').onmouseout =function(){
-            timer = setTimeout(function(){
-                document.getElementById('demo2-div2').style.display = 'none';
-            }, 500);
-        };
+            document.getElementById('demo2-div1').onmouseout = document.getElementById('demo2-div2').onmouseout =function(){
+                timer = setTimeout(function(){
+                    document.getElementById('demo2-div2').style.display = 'none';
+                }, 500);
+            };
+        }
+        //demo3 js代码
+        {
+            var oUl = document.getElementById('demo3-div').getElementsByTagName('ul')[0];
+            var aLi = oUl.getElementsByTagName('li');
+            var movepath = 2;
+            oUl.innerHTML = oUl.innerHTML + oUl.innerHTML; //2份的图片
+            oUl.style.width = aLi[0].offsetWidth*aLi.length+'px'; //如果要将所有的图片显示在一行上，需要的宽度
+            function move(){
+                oUl.style.left = oUl.offsetLeft + movepath + 'px';
+                if(oUl.offsetLeft < -oUl.offsetWidth/2)
+                    oUl.style.left = 0;
+                if(oUl.offsetLeft >0){
+                    oUl.style.left = -aLi[0].offsetWidth*aLi.length/2+'px';
+                }
+            }
+            var demo3_timer = setInterval(move,30);
+            document.getElementById('demo3-left').onmouseover = function(){
+                movepath = -2;
+            };
+            document.getElementById('demo3-right').onmouseover = function(){
+                movepath = 2;
+            };
+            oUl.onmouseover = function(){
+                clearInterval(demo3_timer);
+            };
+            oUl.onmouseout =function(){
+                demo3_timer = setInterval(move,30);
+            };
+        }
+        //demo4 js代码
+        {
+            console.log(document.getElementById('demo4-div').getElementsByTagName('ul')[0].firstChild);
+            if(document.getElementsByTagName('ul')[0].firstElementChild){ //Chrome FF
+                console.log(document.getElementsByTagName('ul')[0].firstElementChild.innerHTML)
+            }else{ //IE6~8
+                console.log(document.getElementsByTagName('ul')[0].firstChild.innerHTML)
+            }
+        }
+        //demo5 js代码
+        {
+            document.getElementById('demo5-btn').onclick= function(){
+                var oLi = document.createElement('li');
+                oLi.innerHTML = document.getElementById('demo5-input').value;
+
+                if(document.getElementById('demo5-ul').getElementsByTagName('li').length > 0){ //长度为空时IE下报错
+                    document.getElementById('demo5-ul').insertBefore(oLi,document.getElementById('demo5-ul').getElementsByTagName('li')[0]);
+                }else
+                    document.getElementById('demo5-ul').appendChild(oLi); //正序插入
+            }
+        }
+        //demo6 js代码
+        {
+            var oUl = document.getElementById('demo6-ul');
+            var oFragment = document.createDocumentFragment();
+            for(var i =0;i<1000;i++){
+                oFragment.appendChild(document.createElement('li'));
+            }
+            oUl.appendChild(oFragment);
+        }
     };
 
 </script>
