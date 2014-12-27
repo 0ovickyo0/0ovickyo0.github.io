@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>禁止用户输入时复制粘贴</title>
+</head>
+
+<body style="text-align: center">
+<div>
+    <h1>禁止用户输入时复制粘贴</h1>
+    <p>说明：</p>
+    <p>    禁止用户输入时复制粘贴</p>
+    <p>用到的知识：</p>
+    <p>    1.在用户复制粘贴时会触发oncopy和onpaste事件，禁止它们，返回false即可。</p>
+</div>
+<hr>
+<div>
+    <label for="input">用户名：</label><input type="text" value="" name="" class="input" id="input"/>
+</div>
+
+<script>
+    (function(){
+        var input = document.getElementById('input');
+        input.onpaste = input.oncopy = function(){
+            return false;
+        }
+    }());
+</script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>提示可输入剩余字数</title>
+</head>
+
+<body style="text-align: center">
+<div>
+    <h1>提示可输入剩余字数</h1>
+    <p>说明：</p>
+    <p>    提示可输入剩余字数</p>
+    <p>用到的知识：</p>
+    <p>       1.textaera标签的oninput事件</p>
+    <p>       2.字符串的substring函数</p>
+</div>
+<hr>
+<div>
+    <textarea id="textarea" maxlength="200px" placeholder="请输入文本进行测试" cols="47" rows="10"></textarea>
+    <div><p>还剩<span id="maxwords"></span>字可输入</p></div>
+
+</div>
+
+<script>
+    (function(){
+        var maxwords = 10;//最大可输入值的设置
+        var textarea = document.getElementById('textarea');
+        var tip_span = document.getElementById('maxwords');
+        tip_span.innerHTML = maxwords; //显示初始值
+        textarea.oninput = function(){
+            var nowlength = this.value.length; // 获取当前已输入的字符数
+            if(nowlength<=maxwords){
+                tip_span.innerHTML = maxwords-nowlength;
+            }else{
+                this.value = this.value.substring(0,maxwords);
+            }
+        }
+    }());
+</script>
+</body>
+
+</html>
