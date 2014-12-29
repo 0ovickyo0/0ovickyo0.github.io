@@ -1,0 +1,223 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>表格操作</title>
+</head>
+<style>
+    body{
+        background-color: #ffffff;
+    }
+</style>
+<body>
+<div>
+    <h1>表格操作</h1>
+    <p>说明：</p>
+    <p>本demo包含表格基本操作，隔行变色，移入高亮，添加删除元素，</p>
+    <p>搜索表格（完全匹配，忽略大小写，模糊搜索，多关键字搜索）的高亮显示或筛选显示</p>
+    <p>表格排序</p>
+
+</div>
+<hr>
+<div>
+    <div>
+        <input type="text" id="name"/> <input type="text" id="gender"/> <input type="text" id="age">
+        <button id="add">添加</button>
+    </div>
+    <div>
+        <input type="text" id="search-val">
+        <button id="search-btn">搜索</button><button id="search-btn1">搜索（筛选）</button>
+    </div>
+    <div>
+        <button id="sort-by-age">排序</button>
+    </div>
+
+
+    <table id="table" border="1px solid black" width="500px" style="margin: 20px;">
+        <thead>
+            <td>序号</td>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>操作</td>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>张三</td>
+            <td>女</td>
+            <td>33</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>李斯</td>
+            <td>女</td>
+            <td>43</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>王武</td>
+            <td>男</td>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>何柳</td>
+            <td>女</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>张倩</td>
+            <td>女</td>
+            <td>56</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>李强</td>
+            <td>男</td>
+            <td>26</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    window.onload = function(){
+
+        var oTab = document.getElementById('table');
+        //鼠标移入某一行时高亮，不考虑背景色情况
+        for(var i = 0;i<oTab.tBodies[0].rows.length;i++){
+            oTab.tBodies[0].rows[i].onmouseover = function(){
+                this.style.backgroundColor = '#eee8aa';
+            };
+            oTab.tBodies[0].rows[i].onmouseout = function(){
+                this.style.backgroundColor = '';
+            };
+        }
+
+        //隔行变色
+        var color = '#20b2aa';
+        for(i = 0;i<oTab.tBodies[0].rows.length; i++){
+            if(i%2 == 0 ){
+                //oTab.tBodies[0].rows[i].style.backgroundColor= color;
+            }else{
+
+            }
+        }
+
+        //鼠标移入某一行时高亮，考虑隔行变色情况
+        var oldColor = "";
+        for(i = 0;i<oTab.tBodies[0].rows.length;i++){
+            oTab.tBodies[0].rows[i].onmouseover = function(){
+                oldColor = this.style.backgroundColor;
+                this.style.backgroundColor = '#eee8aa';
+            };
+            oTab.tBodies[0].rows[i].onmouseout = function(){
+                this.style.backgroundColor = oldColor;
+            };
+        }
+
+        //添加删除元素
+        var tableId=oTab.tBodies[0].rows.length;
+        document.getElementById('add').onclick = function(){
+            tableId++;
+            var oTr = document.createElement('tr');
+
+            var oTd = document.createElement('td');
+            oTd.innerHTML =tableId;
+            oTr.appendChild(oTd);
+
+            //必须每次重新创建节点，不知为何？ 不创建节点就只会append一次
+            oTd = document.createElement('td');
+            oTd.innerHTML =document.getElementById('name').value;
+            oTr.appendChild(oTd);
+
+            oTd = document.createElement('td');
+            oTd.innerHTML =document.getElementById('gender').value;
+            oTr.appendChild(oTd);
+
+            oTd = document.createElement('td');
+            oTd.innerHTML =document.getElementById('age').value;
+            oTr.appendChild(oTd);
+
+            oTd = document.createElement('td');
+            oTd.innerHTML ='<a href="javascript:;">删除</a>';
+            oTr.appendChild(oTd);
+
+            oTab.tBodies[0].appendChild(oTr);
+
+            //添加删除元素事件
+            oTd.getElementsByTagName('a')[0].onclick = function(){
+                oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+            }
+        };
+
+
+        //搜索，高亮显示版本
+        document.getElementById('search-btn').onclick = function(){
+            var searchVal = document.getElementById('search-val').value;
+            var arr = searchVal.split(" "); //考虑多关键字搜索
+
+            for(i=0;i<oTab.tBodies[0].rows.length;i++){
+                oTab.tBodies[0].rows[i].style.backgroundColor = '';
+                for(var k=0;k<arr.length;k++) {
+                    searchVal = arr[k];
+                    for (var j = 0; j < oTab.tBodies[0].rows[i].cells.length; j++) {
+                        var s = oTab.tBodies[0].rows[i].cells[j].innerHTML;
+                        if (s.search(searchVal) >= 0) { //search模糊搜索
+                            oTab.tBodies[0].rows[i].style.backgroundColor = 'yellow';
+                        }
+                    }
+                }
+            }
+        };
+        //筛选搜索，仅显示符合条件的结果
+        document.getElementById('search-btn1').onclick = function(){
+            var searchVal = document.getElementById('search-val').value;
+            var arr = searchVal.split(" "); //考虑多关键字搜索
+            for(i = 0;i< oTab.tBodies[0].rows.length; i++){
+                for(var k=0;k<arr.length;k++) {
+                    searchVal = arr[k];
+                    var find = false;
+                    for (var j = 0; j < oTab.tBodies[0].rows[i].cells.length; j++) {
+                        var s = oTab.tBodies[0].rows[i].cells[j].innerHTML;
+                        if (s.search(searchVal) >= 0) { //search模糊搜索
+                            find=true;
+                        }
+                    }
+                    if(!find){
+                        oTab.tBodies[0].removeChild(oTab.tBodies[0].rows[i]);
+                        i--;
+                    }
+                }
+
+            }
+        };
+
+        //排序
+        document.getElementById('sort-by-age').onclick = function(){
+            var oTr = oTab.tBodies[0].rows;
+            var arr = [];
+            for(i=0;i<oTr.length;i++){
+                arr[i] = oTr[i];
+            }
+
+            arr.sort(function(tr1, tr2){
+                return parseInt(tr1.cells[3].innerHTML)-parseInt(tr2.cells[3].innerHTML); //age是第4列
+            });
+            console.log(arr);
+
+            for(i=0;i<arr.length;i++){
+                oTab.tBodies[0].removeChild(arr[i]);
+                oTab.tBodies[0].appendChild(arr[i]);
+            }
+
+
+        };
+
+    }
+</script>
+</body>
+
+</html>
