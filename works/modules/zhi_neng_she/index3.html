@@ -1,0 +1,410 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>运动</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .demo1 #demo1-div{
+            width:50px;
+            height:50px;
+            background-color: #6b8e23;
+            position: absolute;
+            left: 0;
+        }
+        .demo1 #demo1-div-container{
+            height: 50px;
+        }
+        .demo2 #demo2-div-container{
+            height: 110px;
+            width: 100px; /*demo2-div2 + demo2-div1一样宽度*/
+            position: relative;
+            left: -80px;
+        }
+        .demo2 #demo2-div1{
+            width: 80px;
+            height: 100px;
+            background-color: #ffb6c1;
+            position: absolute;
+            left:0;
+        }
+        .demo2 #demo2-div2{
+            width: 20px;
+            height: 50px;
+            float: left;
+            background-color: #00bfff;
+            position: absolute;
+            left:80px;
+        }
+        .demo3 #demo3-div{
+            width: 100px;
+            height: 100px;
+            filter:alpha(opacity:30);
+            opacity:0.3;
+            background-color: #8a2be2;
+        }
+        .demo3 ul li{
+            filter:alpha(opacity:30);
+            opacity:0.3;
+            list-style:none;
+            float:left;
+            padding: 20px;
+        }
+        .demo4 #demo4-div{
+            width: 50px;
+            height: 50px;
+            background-color: #9acd32;
+            position: relative;
+            left: 0;
+        }
+        .demo4 #demo4-div2{
+            width: 1px;
+            height: 50px;
+            position: absolute;
+            left: 500px;
+            background-color: #000000;
+        }
+        .demo5 #demo5-div{
+            width: 50px;
+            height: 100px;
+            position: absolute;
+            background-color: #eee8aa;
+            right: 0;
+            bottom:0;
+        }
+        .demo6{
+            position: relative;
+        }
+        .demo6 div{
+            width: 50px;
+            height: 50px;
+            background-color: #87cefa;
+            margin: 3px;
+        }
+        .demo7 div{
+            width:50px;
+            height:50px;
+            background-color: #ff84e4;
+            border: 1px solid #ff0000;
+            margin: 3px;
+            filter:alpha(opacity:30);
+            opacity:0.3;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <h1>运动</h1>
+    <p>说明：</p>
+    <p>运动本质上是定时器的应用，定时时间设置为30是为了保证画质流畅。</p>
+</div>
+<hr>
+<div class="demo1">
+    <h2>Demo.1实现div块的匀速运动</h2>
+    <p>说明：</p>
+    <p>运动模式：</p>
+    <p>    1.开始运动之前关闭已有定时器</p>
+    <p>    2.把运动和停止隔开</p>
+    <button id="demo1-btn">开始</button>
+    <div id="demo1-div-container">
+        <div id="demo1-div"></div>
+    </div>
+
+</div>
+<hr>
+<div class="demo2">
+    <h2>Demo2.分享到侧边栏设计</h2>
+    <p>要点：</p>
+    <p>    1.浏览器默认情况下，body和浏览器边框之间是有一个padding的，需要清除掉，否则定位不准</p>
+    <p>    2.container的长度设置为分享到的长度+分享到QQ空间的长度，即是两个子div的元素长度之和，也就是整个分享到标签的长度。</p>
+    <p>    3.3个div的定位特别重要，大的那个demo2-div-container包含demo2-div1和demo2-div2，其中demo2-div-container的left值为-demo2-div1.length，demo2-div1值为0，demo2-div2值为demo2-div1.length，一定不能错，否则下面的鼠标移入移出事件不好确定。</p>
+    <p>    4.只需要控制同一个定时器即可，不需要移入移出分别设置定时器，因为同一时刻，无错情况下，应该只有一个定时器在工作，如果开了两个定时器，会出现抖动的情况。</p>
+    <p>    5.出现了一个问题，把函数单独放出来后，即setInterval(move(),30)这种方式进行调用，居然没有定时器操作了？setInterval()效果变成了setTimeout效果？</p>
+    <p>    6.拿出定时器相同的代码，不是将setInterval(move(),30)分别写在mouseover和mouseout事件中，而是将move的函数封装起来。非常重要！</p>
+    <p>    7.如果位置能被速度整除（此处位置是-80~0，移动80，速度是10,80/10=8，当速度为9时，将永远不可能到达目标位置情况要么移动72，要么移81），即最后一定会有移动到的位置正好等于目标位置，那么，在代码中clearInterval()的写法那里可以不用那么复杂（if((targetPosition<0) &&(oDemo2Div.offsetLeft <= targetPosition))），直接使用（if(oDemo2Div.offsetLeft == targetPosition)）即可。</p>
+    <div id="demo2-div-container">
+        <div id="demo2-div1"><p>分享到QQ空间</p></div>
+        <div id="demo2-div2"><p>分享到</p></div>
+    </div>
+
+</div>
+<hr>
+<div class="demo3">
+    <h2>Demo3.淡入淡出的图片</h2>
+    <div id="demo3-div"></div>
+</div>
+<hr>
+<div class="demo4">
+    <h2>Demo4.缓冲运动</h2>
+    <button id="demo4-btn">开始运动</button>
+    <div id="demo4-div"></div>
+    <!--<div id="demo4-div2"></div> 参考线-->
+</div>
+<hr>
+<div class="demo5">
+    <h2>Demo5.右侧悬浮框</h2>
+    <div id="demo5-div"><p>这是一个广告</p></div>
+
+</div>
+<hr>
+<div class="demo6">
+    <h2>Demo6.多物体变宽</h2>
+    <p>所有的物体都不能共用，需要给每个运动的开一个定时器。</p>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<div class="demo7">
+    <h2>Demo7.任意运动框架</h2>
+    <p>执行不同的运动，一个div变宽，一个div变高，要注意offset的bug（padding,border）</p>
+    <div><p>变宽</p></div>
+    <div><p>变高</p></div>
+    <div><p>44534</p></div>
+    <div><p></p></div>
+    <div></div>
+</div>
+<script>
+    window.onload = function(){
+        //demo1
+        {
+            var demo1Timer= null;
+            var oDemo1Div = document.getElementById('demo1-div');
+            document.getElementById('demo1-btn').onclick = function(){
+                clearInterval(demo1Timer); //开始之前关闭已有定时器
+                demo1Timer = setInterval(function(){
+                    if(oDemo1Div.offsetLeft > 800){ //把运动和停止隔开
+                        clearInterval(demo1Timer);
+                    }else{
+                        oDemo1Div.style.left = oDemo1Div.offsetLeft + 3 + 'px';
+                    }
+                }, 30);
+            };
+        }
+
+        //demo2
+        {
+            var demo2Timer = null;
+            var oDemo2Div = document.getElementById('demo2-div-container');
+            var speed = 10; //正数表示向右移动，负数表示向左移动
+            function demo2Move(targetPosition){
+
+                clearInterval(demo2Timer);
+
+                demo2Timer = setInterval(function(){
+                    if(oDemo2Div.offsetLeft - targetPosition > 0){ //当前位置在目标位置右侧，向目标移动，向左移动
+                        speed = -10;
+                    }else{
+                        speed = 10;
+                    }
+                    console.log(oDemo2Div.offsetLeft, targetPosition);
+                    if((targetPosition>=0) && (oDemo2Div.offsetLeft >= targetPosition)){ //已经移动到超过目标位置了
+                        clearInterval(demo2Timer);
+                    }else if((targetPosition<0) &&(oDemo2Div.offsetLeft <= targetPosition)){
+                        clearInterval(demo2Timer);
+                    }else{
+                        oDemo2Div.style.left = oDemo2Div.offsetLeft + speed + 'px';
+                    }
+                },30);
+            }
+            oDemo2Div.onmouseover = function(){
+                demo2Move(0);
+            };
+            oDemo2Div.onmouseout = function(){
+                demo2Move(-80);
+            };
+        }
+
+        //demo3
+        {
+            var demo3Timer = null;
+            var alpha = 30; //初始的值 必须和样式中的一样，因为没有办法获得到元素的透明度，只能设置
+            var demo3Speed=10;
+            var demo3Div = document.getElementById("demo3-div");
+
+            function demo3Change(target){
+                clearInterval(demo3Timer);
+                if(alpha <= target){
+                    demo3Speed = 10;
+                }else{
+                    demo3Speed = -10;
+                }
+                demo3Timer = setInterval(function(){
+                    if(alpha == target){
+                        clearInterval(demo3Timer);
+                    } else {
+                        alpha = alpha + demo3Speed;
+                        demo3Div.style.filter = 'alpha(opacity:' + alpha + ')';
+                        demo3Div.style.opacity = parseFloat(alpha)/100;
+                    }
+                },30);
+            }
+            demo3Div.onmouseover = function(){
+                demo3Change(100);
+            };
+            demo3Div.onmouseout = function(){
+                demo3Change(30);
+            };
+        }
+
+        //demo4
+        {
+            var demo4Div = document.getElementById('demo4-div');
+            var demo4Timer = null;
+            var demo4Speed = 30;
+            function demo4Move(target){
+                clearInterval(demo4Timer);
+                demo4Timer = setInterval(function(){
+                    if(demo4Div.offsetLeft > target){ //停止
+                        clearInterval(demo4Timer);
+                    }else{ //改变速度
+                        /*if(demo4Speed > 1){ //方式一
+                         demo4Speed = demo4Speed - 1;
+                         }*/
+                        //方式二
+                        demo4Speed = (target - demo4Div.offsetLeft)/10;
+                        demo4Speed = demo4Speed>0 ? Math.ceil(demo4Speed) : Math.floor(demo4Speed);
+                        demo4Div.style.left = demo4Div.offsetLeft + demo4Speed +'px';
+                    }
+                },30);
+            }
+            document.getElementById('demo4-btn').onclick = function(){
+                demo4Move(500);
+            };
+        }
+
+        //demo5
+        {
+            var demo5Div = document.getElementById('demo5-div');
+            var demo5Timer = null;
+            window.onscroll = function(){
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                //demo5Div.style.top = window.innerHeight-demo5Div.offsetHeight + scrollTop + 'px';
+                demo5Move(parseInt((window.innerHeight  - demo5Div.offsetHeight)/2 + scrollTop));
+            };
+            function demo5Move(iTarget){
+                clearInterval(demo5Timer);
+                demo5Timer = setInterval(function(){
+                    var speed = (iTarget - demo5Div.offsetTop)/8;
+                    speed = speed>0?Math.ceil(speed):Math.floor(speed);
+
+                    if(demo5Div.offsetTop == iTarget){
+                        clearInterval(demo5Timer);
+                    }else{
+                        demo5Div.style.top = demo5Div.offsetTop + speed + 'px';
+                    }
+
+                },30);
+            }
+        }
+
+        //demo6
+        {
+            var demo6Divs = document.getElementsByClassName('demo6')[0].getElementsByTagName('div');
+            function demo6Move(obj, iTarget){
+                clearInterval(obj.demo6Timer);
+                obj.demo6Timer = setInterval(function(){
+                    var speed = (iTarget-obj.offsetWidth)/8;
+                    speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                    if(obj.offsetWidth == iTarget){
+                        clearInterval(obj.demo6Timer);
+                    }else{
+                        obj.style.width = obj.offsetWidth + speed + 'px';
+                    }
+                },30);
+            }
+            for(var i =0;i<demo6Divs.length;i++){
+                demo6Divs[i].timer = null; //自定义属性，用作定时器变量
+                demo6Divs[i].onmouseover = function(){
+                    demo6Move(this, 500);
+                };
+                demo6Divs[i].onmouseout = function(){
+                    demo6Move(this, 50);
+                };
+            }
+        }
+
+        //demo7
+        {
+            function getStyle(obj, name){ //要避免offset引起的问题，需要使用新的函数来计算样式，返回值是999px
+                if(obj.currentStyle){
+                    return obj.currentStyle[name];
+                }else {
+                    return getComputedStyle(obj,false)[name];
+                }
+            }
+            var demo7Divs = document.getElementsByClassName('demo7')[0].getElementsByTagName('div');
+            demo7Divs[0].timer = null;
+            demo7Divs[0].onmouseover = function(){
+                demo7Move(500, this, 'width');
+            };
+            demo7Divs[0].onmouseout = function(){
+                demo7Move(50, this, 'width');
+            };
+            demo7Divs[1].timer = null;
+            demo7Divs[1].onmouseover = function(){
+                demo7Move(500, this, 'height');
+            };
+            demo7Divs[1].onmouseout = function(){
+                demo7Move(50, this, 'height');
+            };
+            demo7Divs[2].timer = null;
+            demo7Divs[2].onmouseover = function(){
+                demo7Move(72, this, 'font-size');
+            };
+            demo7Divs[2].onmouseout = function(){
+                demo7Move(14, this, 'font-size');
+            };
+            demo7Divs[3].timer = null;
+            demo7Divs[3].onmouseover = function(){
+                demo7Move(100, this, 'borderWidth');
+            };
+            demo7Divs[3].onmouseout = function(){
+                demo7Move(1, this, 'borderWidth');
+            };
+            demo7Divs[4].timer = null;
+            demo7Divs[4].onmouseover = function(){
+                demo7Move(70, this, 'opacity');
+            };
+            demo7Divs[4].onmouseout = function(){
+                demo7Move(30, this, 'opacity');
+            };
+            function demo7Move(target, obj, attr){
+                clearInterval(obj.timer);
+
+                obj.timer = setInterval(function(){
+                    var style=0;
+                    if(attr=="opacity"){
+                        style =  Math.round(parseFloat(getStyle(obj,attr))*100); //round解决小数点后很多位的问题
+                    }else{
+                        style =  parseInt(getStyle(obj,attr));
+                    }
+
+                    var speed = (target - style)/6;
+                    speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                    if(style == target){
+                        clearInterval(obj.timer);
+                    } else {
+                        if(attr == 'opacity'){
+                            obj.style.filter = "alpha(opcity:"+ (style + speed) +")";
+                            obj.style.opacity = (style + speed)/100;
+                        }else{
+                            obj.style[attr] = style + speed + 'px';
+                        }
+                    }
+
+                },30);
+            }
+        }
+
+
+
+    };
+</script>
+</body>
+
+</html>
