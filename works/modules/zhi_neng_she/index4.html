@@ -1,0 +1,161 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>运动demo</title>
+    <style>
+        .demo1 div{
+            width: 50px;
+            height: 50px;
+            background-color: #ffc0cb;
+            filter:alpha(opacity:30);
+            opacity:0.3;
+        }
+        .demo2 div{
+            width: 50px;
+            height: 50px;
+            background-color: #ff0000;
+            filter:alpha(opacity:30);
+            opacity:0.3;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="demo1">
+    <h1>Demo1.链式运动框架</h1>
+    <p>一个接一个的变化，在某一时刻，只会有一种变化</p>
+    <button>运动</button>
+    <div></div>
+</div>
+
+<hr>
+
+<div class="demo2">
+    <h1>Demo2.完美运动框架</h1>
+    <p>好几个值一起变化，同时发生变化</p>
+    <button>运动</button>
+    <div>1</div>
+    <div>2</div>
+</div>
+
+
+
+<script>
+    window.onload = function(){
+        //demo1
+        {
+            var demo1Btn = document.getElementsByClassName('demo1')[0].getElementsByTagName('button')[0];
+            var demo1Div = document.getElementsByClassName('demo1')[0].getElementsByTagName('div')[0];
+            demo1Btn.onclick = function(){
+                demo1startMove(300, demo1Div, 'width',function(){
+                    demo1startMove(300,demo1Div,'height',function(){
+                        demo1startMove(100,demo1Div,'opacity');
+                    });
+                });
+            };
+            function getStyle(obj, name){ //要避免offset引起的问题，需要使用新的函数来计算样式，返回值是999px
+                if(obj.currentStyle){
+                    return obj.currentStyle[name];
+                }else {
+                    return getComputedStyle(obj,false)[name];
+                }
+            }
+            function demo1startMove(target, obj, attr, fnNext){
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function(){
+                    var style=0;
+                    if(attr=="opacity"){
+                        style =  Math.round(parseFloat(getStyle(obj,attr))*100); //round解决小数点后很多位的问题
+                    }else{
+                        style =  parseInt(getStyle(obj,attr));
+                    }
+
+                    var speed = (target - style)/6;
+                    speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                    if(style == target){
+                        clearInterval(obj.timer);
+                        if(fnNext)
+                            fnNext();
+                    } else {
+                        if(attr == 'opacity'){
+                            obj.style.filter = "alpha(opcity:"+ (style + speed) +")";
+                            obj.style.opacity = (style + speed)/100;
+                        }else{
+                            obj.style[attr] = style + speed + 'px';
+                        }
+                    }
+                },30);
+
+            }
+        }
+
+        //demo2
+        {
+            var demo2Btn = document.getElementsByClassName('demo2')[0].getElementsByTagName('button')[0];
+            var demo2Div = document.getElementsByClassName('demo2')[0].getElementsByTagName('div')[0];
+            var demo2Div2 = document.getElementsByClassName('demo2')[0].getElementsByTagName('div')[1];
+            demo2Btn.onclick = function(){
+                demo2StartMove(demo2Div, {'width':300,'height':100,'opacity':100,'font-size':30},function(){
+                    demo2StartMove(demo2Div2, {'width':600,'height':100,'opacity':100,'font-size':30});
+                });
+            };
+            function demo2getStyle(obj, name){
+                if(obj.currentStyle){
+                    return obj.currentStyle[name];
+                }else{
+                    return getComputedStyle(obj,null)[name];
+                }
+            }
+            function demo2StartMove(obj, json, fnNext){
+                //attr: {'width':300,'height':500,'fontSize':30}
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function(){
+                    var STOP = true;
+                    for(var attr in json){
+                        console.log(attr, json[attr]);
+                        var cur = 0;
+                        if(attr == 'opacity'){
+                            cur = Math.round(parseFloat(demo2getStyle(obj, attr))*100);
+                        }else{
+                            cur = parseInt(demo2getStyle(obj, attr));
+                        }
+                        var speed = (json[attr]-cur)/6;
+                        speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                        console.log(cur, attr, json[attr]);
+
+                        if(cur != json[attr]){
+                            STOP = false;
+                        }
+
+                        if(STOP){
+                            clearInterval(obj.timer);
+                            if(fnNext)
+                                fnNext();
+                        }else{
+                            if(attr == 'opacity'){
+                                obj.style.filter = 'alpha(opacity:'+(cur + speed)+')';
+                                obj.style.opacity = (cur+speed)/100;
+                            }else{
+                                obj.style[attr] = cur+speed+'px';
+                            }
+                        }
+                    }
+                }, 30);
+            }
+        }
+
+
+
+    };
+
+
+
+
+</script>
+</body>
+
+
+
+</html>
