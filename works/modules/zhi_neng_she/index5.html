@@ -1,0 +1,197 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>事件demo</title>
+    <style>
+        .demo3 div{
+            width: 50px;
+            height: 50px;
+            background-color: #00bfff;
+            display: none;
+        }
+        .demo4 div{
+            width:50px;
+            height:50px;
+            background-color: #adff2f;
+            position: absolute;
+        }
+        .demo5 div{
+            width:10px;
+            height:10px;
+            background-color: #ffc0cb;
+            position: absolute;
+        }
+        .demo7 #demo7div1{
+            width:50px;
+            height: 50px;
+            position: absolute;
+            background-color: #ffd700;
+        }
+        .demo7 #demo7div2{
+            width:50px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+
+<body style="height:3000px">
+<div class="demo1">
+    <h1>Demo1.点击事件</h1>
+    <p>全屏点击响应：document.onclick=function(evn)</p>
+    <p>事件有兼容性问题，全局event参数在IE,chrome可用，FF不可用，FF需要指定传参数function(evn)</p>
+    <p>在使用时，var oevent = evn || event;</p>
+</div>
+
+<hr>
+
+<div class="demo2">
+    <h1>Demo2.事件冒泡</h1>
+    <p>禁止事件冒泡：event.cancelBubble=true</p>
+    <div id="div1" style="width: 500px;height:50px; background-color: #ffd700" onclick="alert('div1')">
+        <div id="div2" style="width: 300px;height:50px; background-color: #ffa500" onclick="alert('div2')">
+            <div id="div3" style="width: 100px;height:50px; background-color: #dda0dd"></div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="demo3">
+    <h1>Demo3.事件冒泡之显示消失</h1>
+    <p>点击按钮将显示一个div，点击其他空白地方会消失</p>
+    <button>显示</button>
+    <div></div>
+</div>
+<hr>
+<div class="demo4">
+    <h1>Demo4.div跟踪鼠标</h1>
+    <p>去掉注释后查看哟</p>
+    <p>问题：移动的时候不够平滑</p>
+    <!--<div></div>-->
+</div>
+
+<hr>
+<div class="demo5">
+    <h1>Demo5.鼠标跟随一串div</h1>
+    <p>去掉注释后查看哟</p>
+    <p>问题：一旦鼠标禁止后这些小div就不移动了</p>
+    <!--<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>-->
+</div>
+<hr>
+<div class="demo6">
+    <h1>Demo6.键盘事件</h1>
+    <p>按下键盘上的任意按键试试看</p>
+    <P>有很多按键都没有键值呀！</P>
+    <input type="text" value="键值"/>
+</div>
+
+<hr>
+
+<div class="demo7">
+    <h1>Demo7.键盘控制div左右移动</h1>
+    <p>问题：当按下一个键不懂时，存在一种卡顿现象，如何解决？</p>
+    <div id="demo7div1"></div>
+    <div id="demo7div2"></div>
+</div>
+
+<hr>
+
+
+<script>
+    //demo1
+    {
+        document.onclick = function(evn){
+            var event = evn || event;
+            console.log(event);
+        };
+    }
+
+    //demo2
+    {
+        document.getElementById('div3').onclick = function(evn){
+            var event = evn || event;
+            event.cancelBubble = true; //如果注释掉此行，会发生事件冒泡，弹出3个对话框
+            alert('div3');
+        };
+    }
+
+    //demo3
+    {
+        var demo3Btn = document.getElementsByClassName('demo3')[0].getElementsByTagName('button')[0];
+        var demo3Div = document.getElementsByClassName('demo3')[0].getElementsByTagName('div')[0];
+        demo3Div.onclick = demo3Btn.onclick = function(){
+            demo3Div.style.display='block';
+            event.cancelBubble = true;
+        };
+        document.onclick = function(evn){
+            var event = evn || event;
+            demo3Div.style.display = 'none';
+        }
+    }
+
+    //demo4
+    {
+        var demo4Div = document.getElementsByClassName('demo4')[0].getElementsByTagName('div')[0];
+        function mousePos(evn){
+            var Y = evn.clientY + document.body.scrollTop;
+            var X = evn.clientX + document.body.scrollLeft;
+            return {x:X,y:Y};
+        }
+     /*   document.onmousemove = function(evn){
+            var oevent = evn || event;
+            var pos = mousePos(oevent);
+            //console.log(document.body.scrollTop, document.body.scrollLeft);
+            demo4Div.style.left =pos.x;
+            demo4Div.style.top = pos.y;
+        };*/
+    }
+
+    //demo5
+    /*{
+        document.onmousemove = function(evn){
+            var oevent = evn || event;
+            var pos = mousePos(oevent);
+            var demo5Divs = document.getElementsByClassName('demo5')[0].getElementsByTagName('div');
+
+            for(var i = demo5Divs.length-1;i>0;i--){ //只有n-1个，最后一个即demo5Div[0]是不在循环内的
+                demo5Divs[i].style.top = demo5Divs[i-1].offsetTop;
+                demo5Divs[i].style.left = demo5Divs[i-1].offsetLeft;
+            }
+            demo5Divs[0].style.top = pos.y;
+            demo5Divs[0].style.left = pos.x;
+
+        }
+    }*/
+
+    //demo6
+    {
+        var demo6Input = document.getElementsByClassName('demo6')[0].getElementsByTagName('input')[0];
+        document.onkeydown = function(evn){
+            var oevent = evn||event;
+            demo6Input.value = oevent.keyCode;
+        };
+    }
+
+    //demo7
+    {
+        var demo7Div = document.getElementsByClassName('demo7')[0].getElementsByTagName('div')[0];
+        document.onkeydown = function(evn){
+            var oevent = evn || event;
+            if(oevent.keyCode == 37){//左
+                demo7Div.style.left = demo7Div.offsetLeft - 10;
+            } else if(oevent.keyCode == 39){ //右
+                demo7Div.style.left = demo7Div.offsetLeft + 10;
+            }
+        };
+    }
+
+
+
+</script>
+</body>
+
+
+
+</html>
