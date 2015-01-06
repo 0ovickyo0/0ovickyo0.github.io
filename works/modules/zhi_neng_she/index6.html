@@ -1,0 +1,379 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>事件Demo高级</title>
+<style>
+    .demo1 div{
+        background-color: #c8c8c8;
+        width: 100px;
+        height: 90px;
+        display: none;
+        position: absolute;
+    }
+    .demo1 li{
+        list-style: none;
+    }
+    .demo3 #demo3Div1{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: #ffc0cb;
+    }
+    .demo3 #demo3Div2{
+        width: 50px;
+        height: 50px;
+    }
+    .demo5 #demo5-div1{
+        width:500px;
+        height:500px;
+        background-color: #ffefd5;
+    }
+    .demo5 #demo5-div2{
+        width:50px;
+        height:50px;
+        background-color: #a6e22e;
+        position: absolute;
+    }
+    .demo6 #demo6-div1{
+        width: 50px;
+        height: 50px;
+        background-color: #009926;
+        position: absolute;
+    }
+    .demo6 #demo6-div2{
+        width: 50px;
+        height: 50px;
+    }
+    .demo7 .box{
+         border: 1px dashed #000000;
+         position: absolute;
+     }
+    .demo7 #demo7-div1{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: #ffa500;
+    }
+    .demo7 #demo7-div2{
+        width: 50px;
+        height: 50px;
+    }
+</style>
+</head>
+
+<body>
+    <div class="demo1">
+        <h1>Demo1.默认事件</h1>
+        <p>禁止默认事件，替换右键菜单</p>
+        <p>去掉注释后才看得到效果哟</p>
+        <div>
+            <ul>
+                <li>aaa</li>
+                <li>bbb</li>
+                <li>ccc</li>
+            </ul>
+        </div>
+    </div>
+<hr>
+    <div class="demo2">
+        <h1>Demo2.只输入数字的一种处理方法</h1>
+        <p>在这里并没有使用字符串替换的办法，而是按键事件处理的办法</p>
+        <input type="text"/>
+    </div>
+<hr>
+    <div class="demo3">
+        <h1>Demo3.拖拽div</h1>
+        <div id="demo3Div1"></div>
+        <div id="demo3Div2"></div>
+    </div>
+<hr>
+    <div class="demo4">
+        <h1>Demo4.事件绑定</h1>
+        <p>为了防止写代码冲突，因此不能直接给事件赋一个函数，需要将函数绑定到事件。</p>
+        <p>在IE下使用（事件名前面必须是带on的，比如onclick）：</p>
+        <p>attachEvent(事件名，函数)</p>
+        <p>detachEvent(事件名，函数)</p>
+        <p>在Chrome，FF下使用（事件名前面必须是不带on的，比如click）：</p>
+        <p>addEventListener(事件名，函数)</p>
+        <p>removeEventListener(事件名，函数)</p>
+        <button>绑定</button>
+    </div>
+<hr>
+    <div class="demo5">
+        <h1>Demo5.不拖出父级，磁性吸附</h1>
+        <div id="demo5-div1">
+            <div id="demo5-div2"></div>
+        </div>
+    </div>
+<hr>
+    <div class="demo6">
+        <h1>Demo6.解决拖拽会选中其他文本的问题</h1>
+        <p>IE9以下需要使用setCapture来解决</p>
+        <p>Chrome,FF使用原来的程序就是正常的，因为里面已经包含一句禁止默认事件了</p>
+        <div id="demo6-div1"></div>
+        <div id="demo6-div2"></div>
+    </div>
+<hr>
+    <div class="demo7">
+        <h1>Demo7.有虚框的拖拽</h1>
+        <div id="demo7-div1" ></div>
+        <div id="demo7-div2"></div>
+
+    </div>
+<script>
+    //demo1
+    {
+        function getPos(event){
+            var x = document.body.scrollLeft + event.clientX;
+            var y = document.body.scrollTop + event.clientY;
+            return {x:x,y:y};
+        }
+        /*document.oncontextmenu = function(evn){
+            var oevent = evn || event;
+            var menu = document.getElementsByClassName('demo1')[0].getElementsByTagName('div')[0];
+            var pos = getPos(oevent);
+            menu.style.left = pos.x;
+            menu.style.top = pos.y;
+            menu.style.display = 'block';
+            return false; //阻止默认事件
+        };
+        document.onclick = function(){
+            var menu = document.getElementsByClassName('demo1')[0].getElementsByTagName('div')[0];
+            menu.style.display = 'none';
+        }*/
+    }
+
+    //demo2
+    {
+        var demo2Input = document.getElementsByClassName('demo2')[0].getElementsByTagName('input')[0];
+        demo2Input.onkeydown = function(evn){
+            var oevent = evn || event;
+            console.log(oevent.keyCode);
+            if(oevent.keyCode!=8 && (oevent.keyCode<48 || oevent.keyCode>57)){ //除了数字,退格之外的其它按键
+                return false;
+            }
+        }
+    }
+
+    //demo3
+    {
+        var demo3Div = document.getElementsByClassName('demo3')[0].getElementsByTagName('div')[0];
+        demo3Div.onmousedown = function(evn){
+            var oevent = evn || event;
+            var pos = getPos(oevent);
+            var disx = pos.x - demo3Div.offsetLeft;
+            var disy = pos.y - demo3Div.offsetTop;
+            document.onmousemove = function(evn){
+                var oevent = evn || event;
+                var pos = getPos(oevent);
+                var l = pos.x - disx;
+                var t = pos.y-disy;
+                //限定只能在当前可视区进行移动
+                if(l<0){
+                    l=0;
+                }else if(l>document.body.clientWidth - demo3Div.offsetWidth){
+                    l = document.body.clientWidth - demo3Div.offsetWidth;
+                }
+
+                if(t<0){
+                    t=0;
+                }else if(t>document.body.clientHeight - demo3Div.offsetHeight){
+                    t = document.body.clientHeight - demo3Div.offsetHeight;
+                }
+                demo3Div.style.left = l + 'px';
+                demo3Div.style.top = t + 'px';
+            };
+
+            document.onmouseup = function(){
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+            return false; //阻止其他选中事件
+        };
+    }
+
+    //demo4
+    {
+        var demo4Btn = document.getElementsByClassName('demo4')[0].getElementsByTagName('button')[0];
+        if(demo4Btn.attachEvent){
+            demo4Btn.attachEvent('onclick',function(){
+                alert('a');
+            });
+            demo4Btn.detachEvent('onclick',function(){
+                alert('b');
+            });
+        }else {
+            demo4Btn.addEventListener('click',function(){
+                alert('a');
+            }, false);
+            demo4Btn.addEventListener('click',function(){
+                alert('b');
+            }, false);
+        }
+        //精简的写法
+        function myAddEvent(e, fn){
+            if(demo4Btn.attachEvent){
+                demo4Btn.attachEvent('on'+e,fn);
+            }else {
+                demo4Btn.addEventListener(e,fn, false);
+            }
+        }
+    }
+
+    //demo5
+    {
+        var demo5Div2 = document.getElementById('demo5-div2');
+        var demo5Div1 = document.getElementById('demo5-div1');
+        demo5Div2.onmousedown = function(evn){
+            var oevent = evn || event;
+            var pos = getPos(oevent);
+            var disx = pos.x - demo5Div2.offsetLeft;
+            var disy = pos.y - demo5Div2.offsetTop;
+            document.onmousemove = function(evn){
+
+                var oevent = evn || event;
+                var pos = getPos(oevent);
+                var l = pos.x - disx;
+                var t = pos.y - disy;
+                //限定移动范围
+                if(l<demo5Div1.offsetLeft){
+                    l=demo5Div1.offsetLeft;
+                }else if(l>demo5Div1.offsetLeft + demo5Div1.offsetWidth - demo5Div2.offsetWidth){
+                    l = demo5Div1.offsetLeft + demo5Div1.offsetWidth - demo5Div2.offsetWidth;
+                }
+
+                if(t<demo5Div1.offsetTop){
+                    t=demo5Div1.offsetTop;
+                }else if(t>demo5Div1.offsetTop + demo5Div1.offsetHeight - demo5Div2.offsetHeight){
+                    t = demo5Div1.offsetTop + demo5Div1.offsetHeight - demo5Div2.offsetHeight;
+                }
+                console.log(l, t);
+                demo5Div2.style.left = l + 'px';
+                demo5Div2.style.top = t + 'px';
+            };
+
+            document.onmouseup = function(){
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+            return false; //阻止其他选中事件
+        };
+    }
+
+    //demo6
+    {
+        var demo6Div = document.getElementsByClassName('demo6')[0].getElementsByTagName('div')[0];
+        demo6Div.onmousedown = function(evn){
+            var oevent = evn || event;
+            var pos = getPos(oevent);
+            var disx = pos.x - demo6Div.offsetLeft;
+            var disy = pos.y - demo6Div.offsetTop;
+            document.onmousemove = function(evn){
+                var oevent = evn || event;
+                var pos = getPos(oevent);
+                var l = pos.x - disx;
+                var t = pos.y - disy;
+                //限定只能在当前可视区进行移动
+                if(l<document.body.scrollLeft){
+                    l=document.body.scrollLeft;
+                }else if(l>document.body.clientWidth + document.body.scrollLeft- demo6Div.offsetWidth){
+                    l = document.body.clientWidth+ document.body.scrollLeft - demo6Div.offsetWidth;
+                }
+
+                if(t<document.body.scrollTop){
+                    t=document.body.scrollTop;
+                }else if(t>document.body.clientHeight+ document.body.scrollTop - demo6Div.offsetHeight){
+                    t = document.body.clientHeight+ document.body.scrollTop - demo6Div.offsetHeight;
+                }
+                console.log(l,t);
+                demo6Div.style.left = l + 'px';
+                demo6Div.style.top = t + 'px';
+            };
+
+            if(demo6Div.setCapture){
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    demo6Div.releaseCapture();
+                };
+                demo6Div.setCapture();
+            }else{
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+                return false; //阻止其他选中事件
+            }
+
+        };
+    }
+
+    //demo7
+    {
+        var demo7Div = document.getElementsByClassName('demo7')[0].getElementsByTagName('div')[0];
+        demo7Div.onmousedown = function(evn){
+            var oevent = evn || event;
+            var pos = getPos(oevent);
+            var disx = pos.x - demo7Div.offsetLeft;
+            var disy = pos.y - demo7Div.offsetTop;
+
+            //demo7Div.className = 'box';
+            var box = document.createElement('div');
+            box.className='box';
+            box.style.width = demo7Div.offsetWidth;
+            box.style.height = demo7Div.offsetHeight;
+            box.style.top = demo7Div.offsetTop-1;
+            box.style.left = demo7Div.offsetLeft-1;
+            document.getElementsByClassName('demo7')[0].appendChild(box);
+
+            document.onmousemove = function(evn){
+                var oevent = evn || event;
+                var pos = getPos(oevent);
+                var l = pos.x - disx;
+                var t = pos.y - disy;
+                //限定只能在当前可视区进行移动
+                if(l<document.body.scrollLeft){
+                    l=document.body.scrollLeft;
+                }else if(l>document.body.clientWidth + document.body.scrollLeft- demo7Div.offsetWidth){
+                    l = document.body.clientWidth+ document.body.scrollLeft - demo7Div.offsetWidth;
+                }
+
+                if(t<document.body.scrollTop){
+                    t=document.body.scrollTop;
+                }else if(t>document.body.clientHeight+ document.body.scrollTop - demo7Div.offsetHeight){
+                    t = document.body.clientHeight+ document.body.scrollTop - demo7Div.offsetHeight;
+                }
+                console.log(l,t);
+                box.style.left = l + 'px';
+                box.style.top = t + 'px';
+            };
+
+            if(demo7Div.setCapture){
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    demo7Div.style.left = box.offsetLeft+1;
+                    demo7Div.style.top = box.offsetTop+1;
+                    document.getElementsByClassName('demo7')[0].removeChild(box);
+                    demo6Div.releaseCapture();
+                };
+                demo6Div.setCapture();
+            }else{
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    demo7Div.style.left = box.offsetLeft+1;
+                    demo7Div.style.top = box.offsetTop+1;
+                    document.getElementsByClassName('demo7')[0].removeChild(box);
+                };
+                return false; //阻止其他选中事件
+            }
+
+        };
+    }
+
+
+</script>
+</body>
+
+</html>
