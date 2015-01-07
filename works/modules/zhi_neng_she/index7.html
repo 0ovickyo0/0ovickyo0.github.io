@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ajax</title>
+</head>
+
+<body>
+<h1>Demo.自己写的Ajax交互</h1>
+<p>此例子需要自己搭配服务器使用，在网上无法进行演示。</p>
+<p>1.安装wamp或任意其他服务器，选择wamp是因为它免费且轻量。</p>
+<p>2.安装完后找到目录E:\wamp\www，即你的安装目录下的www文件夹，在里面创建test.html</p>
+<p>3.将本页面源码复制到test.html</p>
+<p>4.在www文件夹下创建test.txt，内容随意，如有中文，请使用utf-8编码</p>
+<p>5.打开浏览器访问localhost/test.html，弹出对话框，显示内容应为test.txt的内容</p>
+
+<p>加上new Date().getTime()表示禁止使用缓存</p>
+
+<script>
+    window.onload = function(){
+        function myAjax(url){
+            //1.创建ajax对象
+            if(window.XMLHttpRequest){ //此处直接用变量会报错，用属性会产生undefined，if的就是false，可以在IE6进行尝试
+                var oAjax = new XMLHttpRequest();
+            }else{
+                var oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            //2.连接到服务器(方法名，url，异步传输)
+            oAjax.open('GET',url,true)
+            //3.发送请求
+            oAjax.send();
+            //4.接收返回值
+            oAjax.onreadystatechange = function(){
+                if(oAjax.readyState == 4){
+                //0-没有调用open，1-已调用send，2-send完成接收到全部相应，3-正在解析响应，4-解析完成
+                    if(oAjax.status == 200){
+                        alert("成功："+oAjax.responseText);
+                    }else{
+                        alert("失败："+oAjax.status);
+                    }
+                }
+            }
+
+        }
+
+        myAjax('test.txt?t=' + new Date().getTime());
+    };
+</script>
+</body>
+
+</html>
