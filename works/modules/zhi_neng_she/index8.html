@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>面向对象编程</title>
+</head>
+
+<body>
+    <p>Demo.面向对象编程</p>
+    <input type="text" value="123" id="show"/>
+    <p>一共有三段代码，逐步深入解释面向对象的写法。第三段代码是最佳实现方式</p>
+    <p>去掉注释后方可看到每次alert的不同</p>
+    <p>使用原型解决函数重复的问题，将属性放在构造函数中，方法放在原型中。</p>
+<script>
+
+    //写法一
+    function CreateAccount(name, age){
+        var obj = new Object();
+        obj.name = name;
+        obj.age = age;
+
+        obj.showName = function(){
+            alert("名字是:" + this.name);
+        };
+
+        obj.showAge = function(){
+            alert("年龄是:" + this.age);
+        };
+
+        return obj;
+    }
+
+    /*var obj = CreateAccount("张三",24);
+    obj.showName();
+    obj.showAge();
+    var obj1 = CreateAccount("李四",25);
+    obj1.showName();
+    obj1.showAge();
+    document.getElementById('show').value = (obj.showName == obj1.showName);
+    alert(obj.showName == obj1.showName); //false
+*/
+    //写法二
+    function CreatePerson(name, age){
+        //自己写的时候，原料 var obj = new Object();
+        //注释掉后，使用this，那么浏览器会偷偷做些事情：
+        //var this = new Object();
+        this.name = name;
+        this.age = age;
+
+        this.showName = function(){
+            alert("名字是:" + this.name);
+        };
+
+        this.showAge = function(){
+            alert("年龄是:" + this.age);
+        };
+
+        //自己写的时候，产品 return obj;
+        //注释掉自己写的以后，浏览器会偷偷的做：
+        //return this;
+    }
+
+   /* var obj2 = new CreateAccount("张三",24);
+    obj2.showName();
+    obj2.showAge();
+    var obj3 = new CreateAccount("李四",25);
+    obj3.showName();
+    obj3.showAge();
+    document.getElementById('show').value = (obj2.showName == obj3.showName);
+    alert(obj2.showName == obj3.showName);*/ //false，既然是false，说明是两个不同的函数，那么就函数重复了，写法三解决了函数重复问题
+
+    //写法三
+    //通过使用原型解决函数重复问题
+    //最佳写法，将属性写入构造函数，方法写入原型
+    function CreateMan(name, age){
+        this.name = name;
+        this.age = age;
+    }
+    CreateMan.prototype.showName = function(){
+        alert("名字是:" + this.name);
+    };
+    CreateMan.prototype.showAge = function(){
+        alert("年龄是:" + this.age);
+    };
+
+    var obj4 = new CreateMan("张三",24);
+    obj4.showName();
+    obj4.showAge();
+    var obj5 = new CreateMan("李四",25);
+    obj5.showName();
+    obj5.showAge();
+    document.getElementById('show').value = (obj4.showName == obj5.showName);
+    alert(obj4.showName == obj5.showName); //true
+
+</script>
+</body>
+
+</html>
