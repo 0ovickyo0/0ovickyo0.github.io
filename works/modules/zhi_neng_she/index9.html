@@ -1,0 +1,147 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>面向对象的拖拽</title>
+    <style>
+        #drag{
+            width: 100px;
+            height: 100px;
+            background-color: #ffc0cb;
+            position: absolute;
+        }
+        #limit-drag{
+            width: 100px;height: 100px;
+            background-color: #00bfff;
+            position: absolute;
+        }
+
+    </style>
+</head>
+
+<body>
+<p>Demo.面向对象的拖拽</p>
+<p>本demo实现了面向对象的拖拽，并演示了如何实现继承。</p>
+<p>LimitDrag继承于Drag。并重写了其中的一个方法。</p>
+<p>此处并非完美拖拽，只考虑在一屏中的拖拽，重点在于如何写继承以及面向对象。</p>
+
+<div id="drag"><p>普通拖拽</p></div>
+<div id="limit-drag"><p>限制边框的拖拽</p></div>
+
+<script>
+
+
+    //Step1.普通拖拽程序，没有考虑面向对象-------------------------------------------------------
+    /*dragDiv.onmousedown = function(evn){
+        var dragDiv = document.getElementById('drag');
+        var oevent = evn || event;
+        var disX = oevent.clientX - dragDiv.offsetLeft; //更佳的写法是鼠标坐标计算需要加上滚轮长度，样式计算要用到getCurrentStyle，此处只考虑一屏的长度
+        var disY = oevent.clientY - dragDiv.offsetTop;
+
+        document.onmousemove = function(evn){
+            var oevent = evn || event;
+
+            dragDiv.style.left = oevent.clientX - disX + 'px';
+            dragDiv.style.top = oevent.clientY - disY + 'px';
+
+        };
+
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+
+        return false;
+
+    };*/
+
+    //Step2.普通拖拽程序，考虑面向对象，首先把所有函数变量都独立出来-----------------------------------------------------
+    /*var disX = 0;
+    var disY = 0;
+    var dragDiv = document.getElementById('drag');
+    dragDiv.onmousedown =Down;
+    function Down(evn){
+        var oevent = evn || event;
+
+        disX = oevent.clientX - dragDiv.offsetLeft;
+        disY = oevent.clientY - dragDiv.offsetTop;
+        document.onmousemove = Move;
+        document.onmouseup = Up;
+    }
+    function Move(evn){
+        var oevent = evn || event;
+        dragDiv.style.left = oevent.clientX - disX + 'px';
+        dragDiv.style.top = oevent.clientY - disY + 'px';
+    }
+    function Up(){
+        document.onmousemove = null;
+        document.onmouseup = null;
+    }*/
+
+    //Step3.普通拖拽程序，考虑面向对象，将变量变成构造函数的属性，函数变成构造函数原型的属性。----------------------------
+    function Drag(id){
+        this.oDiv = document.getElementById(id);
+        this.disX = 0;
+        this.disY = 0;
+        var self = this;
+        this.oDiv.onmousedown = function(evn){
+            self.Down(evn);
+        };
+    }
+    Drag.prototype.Down = function(evn){
+        var oevent = evn || event;
+        var self = this;
+        this.disX = oevent.clientX - this.oDiv.offsetLeft;
+        this.disY = oevent.clientY - this.oDiv.offsetTop;
+        document.onmousemove = function(evn){
+            self.Move(evn);
+        };
+        document.onmouseup = function(evn){
+            self.Up(evn);
+        };
+        return false; //解决拖拽中的选中问题
+    };
+
+    Drag.prototype.Move = function (evn){
+        var oevent = evn || event;
+        this.oDiv.style.left = oevent.clientX - this.disX + 'px';
+        this.oDiv.style.top = oevent.clientY - this.disY + 'px';
+    };
+    Drag.prototype.Up = function(){
+        document.onmousemove = null;
+        document.onmouseup = null;
+    };
+    window.onload = function(){
+        new Drag('drag');
+        new LimitDrag('limit-drag');
+    };
+
+    //Step4.限制边框的拖拽，继承自普通拖拽
+    function LimitDrag(id){
+        Drag.call(this, id); //属性继承
+    }
+    for(var i in Drag.prototype){
+        LimitDrag.prototype[i] = Drag.prototype[i];
+        //方法继承，不能直接 LimitDrag.prototype = Drag.prototype
+        //会导致原型重叠在一起，修改任何一个都会改变另外一个
+    }
+    LimitDrag.prototype.Move = function(evn){
+        var oevent = evn || event;
+        var l = oevent.clientX - this.disX;
+        var t = oevent.clientY - this.disY;
+
+        if(l<0){
+            l=0;
+        }
+        if(t<0){
+            t=0;
+        }
+
+        this.oDiv.style.left = l + 'px';
+        this.oDiv.style.top =  t+ 'px';
+
+    }
+
+</script>
+</body>
+
+</html>
