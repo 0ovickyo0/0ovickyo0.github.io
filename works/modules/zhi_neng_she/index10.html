@@ -1,0 +1,60 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>BOM对象</title>
+</head>
+
+<body>
+<h1>BOM对象</h1>
+<p>本Demo主要演示和BOM相关的操作。</p>
+
+<div class="demo1">
+    <h2>Demo1.打开一个新窗口</h2>
+    <p>window.open('http://g.cn')</p>
+    <p>如果url不加http会被认为是相对路径</p>
+    <button onclick="window.open('http://g.cn')">打开</button>
+</div>
+<hr>
+<div class="demo2">
+    <h2>Demo2.向页面中写入指定内容</h2>
+    <p>document.write('abc')</p>
+    <p>会清空当前页面，只剩下写入的内容</p>
+    <button onclick="document.write('abc')">写入内容</button>
+</div>
+<hr>
+<div class="demo3">
+    <h2>Demo3.新开一个页面，并向其中写入内容</h2>
+    <p>适合做点击后在新窗口尝试代码</p>
+    <button id="demo3-btn">try it</button>
+</div>
+<hr>
+<div class="demo4">
+    <h2>Demo4.关闭一个窗口</h2>
+    <p>FF禁止关闭用户打开的窗口，只能关闭由JS打开的窗口</p>
+    <button onclick="window.close()">try it</button>
+</div>
+<hr>
+<div class="demo5">
+    <h2>Demo5.查看浏览器版本信息</h2>
+    <p>window.navigator.userAgent</p>
+    <button onclick="alert(window.navigator.userAgent)">try it</button>
+</div>
+<hr>
+<div class="demo6">
+    <h2>Demo6.获取当前窗口的url</h2>
+    <p>window.location</p>
+    <button onclick="alert(window.location)">try it</button>
+</div>
+
+<script>
+
+    var demo3Btn = document.getElementById('demo3-btn');
+    demo3Btn.onclick = function(){
+        var newWin = window.open('about:blank');
+        newWin.document.write("abc");
+    };
+
+</script>
+</body>
+
+</html>
