@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Cookie</title>
+</head>
+
+<body>
+<h1>Demo.Cookie</h1>
+<p>使用localhost测试cookie的时候，仅FF有效，其他浏览器不会保留localhost的cookie。</p>
+<p>查看页面cookie时，FF中选择：页面右键->查看页面信息->安全->查看cookie，十分方便。</p>
+
+
+<script>
+    //在页面中存储cookie
+    /*function setCookie(name, value, time){
+        var oDate = new Date();
+        oDate.setDate(oDate.getDate()+time); //time天以后
+
+
+
+        document.cookie = name + '=' + value + ';expires=' + oDate;
+    }
+    setCookie('name','vivi',7);
+    setCookie('pass','123321',2);*/
+
+    //取出页面cookie
+    function getCookies(name){
+        var cookies = document.cookie.split('; ');
+        console.log(cookies);
+        for(var i=0;i<cookies.length;i++){
+            var vk = cookies[i].split('=');
+            console.log(vk[0], vk[1]);
+            if(vk[0] == name){
+
+                return vk[1];
+            }
+        }
+    }
+    console.log(getCookies("pass"));
+
+</script>
+</body>
+
+</html>
