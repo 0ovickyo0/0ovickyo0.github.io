@@ -1,0 +1,150 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>JS中的正则表达式</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<h1>JS中的正则表达式</h1>
+
+<div class="demo1">
+    <h1>Demo1.substring,search,match</h1>
+    <div>
+        <p>str.substring(a,b)，返回的字符下标范围在[a,b)之间，注意，是不包含b的</p>
+        <p>substring(1,3)</p>
+        <label for="demo1-t1">原始字符：</label><input id="demo1-t1" value="abcdef"/>
+        <button id="demo1-btn">执行</button>
+        <label for="demo1-t2">结果：</label><input id="demo1-t2"/>
+    </div>
+    <div>
+        <p>str.search(x),返回找到的字符的下标，如果找不到，返回-1</p>
+        <label for="demo1-t3">原始字符：</label><input id="demo1-t3" value="abcdef"/>
+        <label for="demo1-t4">要查找的字符：</label><input id="demo1-t4" value="c"/>
+        <button id="demo1-btn2">执行</button>
+        <label for="demo1-t5">结果：</label><input id="demo1-t5"/>
+    </div>
+    <div>
+        <p>str.match(x),返回与结果匹配的字符，如果没有匹配的，则返回空，只会 返回第一次匹配到的</p>
+        <label for="demo1-t6">原始字符：</label><input id="demo1-t6" value="abcdefefef"/>
+        <label for="demo1-t7">要查找的字符：</label><input id="demo1-t7" value="ef"/>
+        <button id="demo1-btn3">执行</button>
+        <label for="demo1-t8">结果：</label><input id="demo1-t8"/>
+    </div>
+</div>
+<hr>
+<div class="demo2">
+    <h1>Demo2.正则表达式风格</h1>
+    <p>正则表达式有两种风格</p>
+    <p>风格一（JS风格）：var re = new RegExp('a'); str = "abc"; str.search(re);</p>
+    <p>风格二（Perl风格）：var  re = /a/; str="abc"; str.search(re);</p>
+</div>
+<hr>
+<div class="demo3">
+    <h1>Demo3.敏感词过滤</h1>
+    <p>re = /xx|xx/g</p>
+    <p>str.replace(re, "***")</p>
+    <p>如果要实现动态的改变re的值，需要使用eval</p>
+    <label for="demo3-t1">原始字符：</label><input id="demo3-t1" value="abcdefefef"/>
+    <label for="demo3-t2">要过滤的字符（使用|分割开）：</label><input id="demo3-t2" value="ef"/>
+    <button id="demo3-btn">执行</button>
+    <label for="demo3-t3">结果：</label><input id="demo3-t3"/>
+</div>
+<hr>
+<div class="demo4">
+    <h1>Demo4.正则表达式中的通配符</h1>
+    <p>[]任选一个即可</p>
+    <p>[a-z0-9] 匹配小写字母和数字</p>
+    <p>[^a-z0-9] 匹配除了小写字母和数字之外的</p>
+    <p>. 匹配任意字符</p>
+    <p>\d 等同于 [0-9]       \D 等同于 [^0-9]</p>
+    <p>\w 等同于 [a-z0-9_]   \D 等同于 [^a-z0-9_]</p>
+    <p>\s 等同于 空白字符     \S 等同于 非空白字符</p>
+    <p>{n}   正好出现n次，例如：过滤8位电话号码[1-9]\d{7}</p>
+    <p>{n,m} 最少m次，最多n次，例如：过滤QQ：[1-9]\d{4,10}</p>
+    <p>{n,}  最少n次，最多不限</p>
+    <p>+     等同于{1,}</p>
+    <p>?     等同于{0,1}，例如，匹配固定电话，区号和分机号是可能出现也可能不出现的：/(0\d{2,3}-)?[1-9]\d{7}(-\d{1,5})?/</p>
+    <p>*     等同于{0,} 不推荐使用</p>
+</div>
+<hr>
+<div class="demo5">
+    <h1>Demo5.过滤HTML标签</h1>
+    <p>re=/<[^>]+>/g;</p>
+    <label for="demo5-t1">原始字符：</label><input id="demo5-t1" value="<h1>你今天好吗？</h1><h2>我今天很好</h2>"/>
+    <button id="demo5-btn">执行</button>
+    <label for="demo5-t2">结果：</label><input id="demo5-t2"/>
+</div>
+<hr>
+<div class="demo6">
+    <h1>Demo6.邮箱过滤</h1>
+    <p>re=/^\w+@[a-z0-9]+\.[a-z]+$/g;</p>
+    <p>此处^表示行首，$表示行尾</p>
+    <p>添加行首行尾的原因是避免出现奇怪的字符，此处要求完全匹配</p>
+    <label for="demo6-t1">原始字符：</label><input id="demo6-t1" value="哈哈vickyl@qq.com"/>
+    <button id="demo6-btn">执行</button>
+    <label for="demo6-t2">结果：</label><input id="demo6-t2"/>
+
+</div>
+
+<script>
+    //demo1
+    {
+        document.getElementById('demo1-btn').onclick = function(){
+            var oT1 = document.getElementById('demo1-t1');
+            var oT2 = document.getElementById('demo1-t2');
+            oT2.value = oT1.value.substring(1,3);
+        };
+
+        document.getElementById('demo1-btn2').onclick = function(){
+            var oT1 = document.getElementById('demo1-t3');
+            var oT2 = document.getElementById('demo1-t4');
+            var oT3 = document.getElementById('demo1-t5');
+            oT3.value = oT1.value.search(oT2.value);
+        };
+
+        document.getElementById('demo1-btn3').onclick = function(){
+            var oT1 = document.getElementById('demo1-t6');
+            var oT2 = document.getElementById('demo1-t7');
+            var oT3 = document.getElementById('demo1-t8');
+            oT3.value = oT1.value.match(oT2.value);
+        };
+    }
+
+    //demo3
+    {
+        document.getElementById('demo3-btn').onclick = function(){
+            var oT1 = document.getElementById('demo3-t1');
+            var oT2 = document.getElementById('demo3-t2');
+            var oT3 = document.getElementById('demo3-t3');
+            //var re = /ef/g;
+            //实现拼接
+            eval('re=/' + oT2.value + "/g");
+            oT3.value = oT1.value.replace(re, "***");
+        };
+    }
+
+    //demo5
+    {
+        document.getElementById('demo5-btn').onclick = function(){
+            var oT1 = document.getElementById('demo5-t1');
+            var oT2 = document.getElementById('demo5-t2');
+            var re=/<[^>]+>/g;
+            oT2.value = oT1.value.replace(re, "");
+        };
+    }
+
+    //demo6
+    document.getElementById('demo6-btn').onclick = function(){
+        var oT1 = document.getElementById('demo6-t1');
+        var oT2 = document.getElementById('demo6-t2');
+        var re=/^\w+@[a-z0-9]+\.[a-z]+$/g;
+        oT2.value = re.test(oT1.value);
+    };
+
+</script>
+</body>
+
+</html>
