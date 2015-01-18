@@ -10,7 +10,7 @@ image:
   creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
 ---
 
-本文章主要总结了在调试RMI过程中遇到的问题。如果您想了解关于新手学RMI问题。请戳[RMI 基础 入门](({{ site.url }}/rmi-basic/))
+本文章主要总结了在调试RMI过程中遇到的问题。如果您想了解关于新手学RMI问题。请戳[RMI 基础 入门]({{ site.url }}/rmi-basic/)
 
 # 背景
 
@@ -26,7 +26,7 @@ DX应用中，使用队列进行缓存排队。
 
 # RMI 基础
 
-[RMI 基础 入门](({{ site.url }}/rmi-basic/))
+[RMI 基础 入门]({{ site.url }}/rmi-basic/)
 
 # 遇到问题
 注：以下问题是在调试项目过程中遇到的，并不仅限于RMI部分，提供的解决参考方案，若有错误或不详部分，可以在评论中注明。
