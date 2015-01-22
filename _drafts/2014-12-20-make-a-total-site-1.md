@@ -2,7 +2,7 @@
 layout: post
 title: 我的整站制作之路(一)
 description: "整站制作步骤，实战，例程"
-modified: 2014-12-15
+modified: 2014-12-20
 tags: [css, html. javascript]
 image:
   feature: abstract-10.jpg
@@ -60,6 +60,7 @@ make-a-total-site/
 |   └──main.css
 |──js/
 |   └──main.js
+|──images/
 └──total-site-demo.html
 {% endhighlight %}
 

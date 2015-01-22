@@ -22,7 +22,7 @@
 <script>
     (function(){
        document.onkeydown = function(e){
-           e = e || window.event;
+           e = e || window.event; //兼容性考虑
            var keyCode = e.keyCode || e.which;
            if(e.ctrlKey && keyCode == 13){
                alert('表单已提交');

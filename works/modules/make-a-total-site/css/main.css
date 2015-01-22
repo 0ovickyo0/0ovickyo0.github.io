@@ -1,0 +1,122 @@
+/*!
+* main.css
+* Version 20150113
+* Designed by @vicky <15871414122@126.com>
+*/
+
+/*样式重置*/
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, ul, li{	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: inherit;	vertical-align: baseline;}
+
+li{list-style: none;}
+
+html, html a{
+    -webkit-font-smoothing:antialiased;
+}
+
+@font-face {
+    font-family: Lato-Bold; /*这里是说明调用来的字体名字*/
+    src: url('Lato-Bold.ttf'); /*这里是字体文件路径*/
+}
+body {
+    min-width: 590px;
+}
+
+.header .header-wrap {
+    height: 89px;
+    background-color: #2d303a;
+}
+.header .logo{
+    height: 89px;
+    width: 170px;
+    float: left;
+}
+.header p, .header a{
+    color: #ffffff;
+    font-family: Lato-Bold;
+}
+.header p{
+    padding-top: 35px;
+    padding-left: 40px;
+    font-size: 25px;
+}
+.header p span{
+    color: #f06c64;
+}
+
+.header .nav{
+    padding-top: 45px;
+}
+
+.header ul{
+    float: right;
+    padding-right: 40px;
+}
+.header li{
+    float: left;
+}
+.header li span{
+    padding-left: 7px;
+    padding-right: 7px;
+    color: #494e62;
+}
+
+.header a{
+    font-size: 12px;
+    cursor: pointer;
+}
+.header a:hover{
+    color: #f06c64;
+}
+
+.header-bottom {
+    height: 6px;
+    background-color: #323746;
+}
+
+
+.silder .silder-wrap {
+    height: 600px;
+    background-color: #f06c64;
+    position: relative;
+}
+.silder .pre {
+    width: 50%;
+    height: 600px;
+    float: left;
+}
+.silder .next {
+    width: 50%;
+    height: 600px;
+    float: left;
+}
+.silder .pre-arrows, .silder .next-arrows{
+    width: 20px;
+    height: 28px;
+    top: 286px;
+    position: absolute;
+    cursor: pointer;
+}
+.silder .pre-arrows {
+    left: 40px;
+    background: url("../images/silder-arrows.png") 0 0;
+}
+.silder .next-arrows {
+    right: 40px;
+    background: url("../images/silder-arrows.png") -20 0;
+}
+.silder .silder-content {
+    position: absolute;
+    width: 100%;
+}
+.silder li {
+}
+.silder li div {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+}
+.silder .silder-bottom {
+    height: 6px;
+    background-color: #ea676b;
+}
+
