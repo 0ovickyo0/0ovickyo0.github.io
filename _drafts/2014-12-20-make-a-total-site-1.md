@@ -5,9 +5,8 @@ description: "整站制作步骤，实战，例程"
 modified: 2014-12-20
 tags: [css, html. javascript]
 image:
-  feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  feature: abstract-4.jpg
+  background: bg-4.png
 ---
 
 打算写一篇如何制作良好的前端开发网页的系列文章。

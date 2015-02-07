@@ -5,9 +5,8 @@ description: "maven基础, 从零开始学maven"
 modified: 2015-02-02
 tags: [maven, java]
 image:
-  feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  feature: abstract-4.jpg
+  background: bg-4.png
 ---
 
 万恶的打包，万恶的maven，看我来收了你！
@@ -227,14 +226,31 @@ STEP10.下面配置Tomcat服务器，本例使用Tomcat6
 	<a href="/images/post/2015-02-02-19.png"><img src="/images/post/2015-02-02-19.png" alt=""></a>
 </figure>
 
-# 使用idea创建maven管理的Java Web SSH项目
-
-
-# 使用idea将一个已有的java web项目转换成maven管理的项目
-
-
 # maven中如何把本地jar打包到仓库/在maven中使用本地仓库
+STEP1：将jar包安装到本地repository中：
+{% highlight shell %}
+mvn install:install-file -DgroupId=msglib -DartifactId=antlr -Dversion=2.7.6 -Dpackaging=jar -Dfile=D:\msglib\antlr-2.7.6.jar
+{% endhighlight %}
 
+STEP2.添加 in project repository，
+{% highlight xml %}
+<repositories>
+    <repository>
+        <id>in-project</id>
+        <name>In Project Repo</name>
+        <url>file://${project.basedir}/lib</url>
+    </repository>
+</repositories>
+{% endhighlight %}
+
+STEP3.在pom.xml中添加了
+{% highlight xml %}
+<dependency>
+    <groupId>msglib</groupId>
+    <artifactId>antlr</artifactId>
+    <version>2.7.6</version>
+</dependency>
+{% endhighlight %}
 
 # 不得不说的构建依赖的技巧
 <span class="highlight-pink">1.到哪里去找jar包？</span>

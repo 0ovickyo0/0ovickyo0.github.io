@@ -5,9 +5,8 @@ description: "新手理解切图，切图工具介绍，切图实战"
 modified: 2014-12-15
 tags: [切图, css, photoshop]
 image:
-  feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  feature: abstract-3.jpg
+  background: bg-3.png
 ---
 
 这是一篇有关于我与切图的故事。

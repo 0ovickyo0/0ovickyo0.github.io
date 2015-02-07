@@ -5,9 +5,8 @@ description: "整站制作步骤，实战，例程"
 modified: 2014-12-25
 tags: [css, html. javascript]
 image:
-  feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  feature: abstract-6.jpg
+  background: bg-6.png
 ---
 
 打开psd文件，确定需求，确定可重用组件后，阅读(CSS编码规范)[]后，开始动手写代码。

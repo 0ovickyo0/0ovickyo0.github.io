@@ -5,9 +5,8 @@ description: "最热门的CSS预处理编译器Sass，LESS和Stylus的比较"
 modified: 2014-12-04
 tags: [css, sass, less, stylus, 预处理编译器]
 image:
-  feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  feature: abstract-1.jpg
+  background: bg-1.png
 ---
 
 

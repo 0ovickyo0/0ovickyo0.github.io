@@ -5,9 +5,8 @@ description: "一步一步，将scss源文件修改成less源文件"
 modified: 2014-12-09
 tags: [css, sass, less]
 image:
-  feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  feature: abstract-2.jpg
+  background: bg-2.png
 ---
 
 这是一篇有关于我将本主题的Scss样式文件修改成LESS样式文件的故事。

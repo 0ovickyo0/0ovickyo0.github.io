@@ -6,8 +6,7 @@ modified: 2015-01-11
 tags: [java, rmi, ssh]
 image:
   feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  background: bg-10.png
 ---
 
 本文章主要总结了在调试RMI过程中遇到的问题。如果您想了解关于新手学RMI问题。请戳[RMI 基础 入门]({{ site.url }}/rmi-basic/)

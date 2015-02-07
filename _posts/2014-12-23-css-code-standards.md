@@ -5,9 +5,8 @@ description: "CSS编码规范参考"
 modified: 2014-12-23
 tags: [css, standards]
 image:
-  feature: abstract-10.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+  feature: abstract-5.jpg
+  background: bg-5.png
 ---
 
 # 命名规范
