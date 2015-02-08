@@ -23,21 +23,20 @@ image:
 ## 1.给浮动元素的父级加浮动，子元素可以撑开父级高度
 问题：父级太多的话加的没完没了了，margin失效
 
-<div style="display:inline-block;">
-    <div style="border:1px solid black; float:left;">
-        <div style="width:50px; height:50px; background-color:#7c1; float:left;">
-        </div>
+
+<div style="border:1px solid black; float:left;margin:20px;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
 </div>
 
-
+<br clear="all"/>
 
 
 ## 2.给浮动元素的父级加display:inline-block
 问题：显示和上面那个一样，但是不用给父级的父级加浮动，margin仍然失效
 
 <div>
-    <div style="border:1px solid black;display:inline-block">
+    <div style="border:1px solid black;display:inline-block;margin:20px;">
         <div style="width:50px; height:50px; background-color:#7c1; float:left;">
         </div>
     </div>
@@ -51,7 +50,7 @@ image:
     height: 0px; clear: both; font-size: 0;
 }
 {% endhighlight %}
-<div style="border:1px solid black;">
+<div style="border:1px solid black;margin:20px;">
     <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <div style="height: 0px; clear: both; font-size: 0;"></div>
@@ -70,7 +69,7 @@ font-size:0; 只能处理到最小高度2px，仍然无法完全去掉
 {% endhighlight %}
 使用起来快准好，但是不符合W3C标准，将结构和样式分离
 
-<div style="border:1px solid black;">
+<div style="border:1px solid black;margin:20px;">
     <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <br clear="all"/>
@@ -106,6 +105,7 @@ font-size:0; 只能处理到最小高度2px，仍然无法完全去掉
 }
 .box {
     border:1px solid black;
+    margin:20px;
 }
 </style>
 
@@ -130,7 +130,7 @@ hidden 溢出隐藏
 
 检测浮动元素的溢出，overflow:auto; 可以检测出浮动元素的溢出
 
-<div style="border:1px solid black;overflow:hidden;">
+<div style="border:1px solid black;margin:20px;overflow:hidden;">
     <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <br clear="all"/>
@@ -141,7 +141,7 @@ overflow问题：IE6下不行，包不住浮动元素，解决办法：配合zoo
 ## 7.定位清浮动
 给父级加上：position:absolute, position:fixed
 
-<div style="border:1px solid black;position:absolute;">
+<div style="border:1px solid black;margin:20px;position:absolute;">
     <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <br clear="all"/>
