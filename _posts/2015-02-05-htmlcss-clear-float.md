@@ -23,19 +23,26 @@ image:
 ## 1.给浮动元素的父级加浮动，子元素可以撑开父级高度
 问题：父级太多的话加的没完没了了，margin失效
 
-<div style="border:1px solid black;">
-    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
+<div>
+    <div style="border:1px solid black; float:left;">
+        <div style="width:50px; height:50px; background-color:#7c1; float:left;">
+        </div>
     </div>
 </div>
+
+
 
 
 ## 2.给浮动元素的父级加display:inline-block
 问题：显示和上面那个一样，但是不用给父级的父级加浮动，margin仍然失效
 
-<div style="border:1px solid black;">
-    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
+<div>
+    <div style="border:1px solid black;display:inline-block">
+        <div style="width:50px; height:50px; background-color:#7c1; float:left;">
+        </div>
     </div>
 </div>
+
 
 
 ## 3.在浮动元素下方加一个清浮动样式的div:
