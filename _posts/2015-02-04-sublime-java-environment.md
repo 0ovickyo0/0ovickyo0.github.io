@@ -5,8 +5,8 @@ description: "在sublime下搭建java编译环境，既可以写代码，又可�
 modified: 2015-02-04
 tags: [sublime, java]
 image:
-    feature: abstract-5.jpg
-    background: bg-5.png
+  feature: abstract-5.jpg
+  background: bg-5.png
 ---
 
 因为不想安装idea，eclipse，netbeans，萌生的用sublime写编译java程序。
