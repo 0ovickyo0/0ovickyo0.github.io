@@ -16,6 +16,7 @@ image:
 <!--more-->
 
 # STEP1.设置环境变量
+
 新建系统变量JAVA_HOME 和CLASSPATH
 变量名：JAVA_HOME
 变量值：C:\Program Files\Java\jdk1.8.0_31
@@ -30,6 +31,7 @@ image:
 # 2.创建批处理或Bash Shell脚本文件
 
 打开任意的文本编辑器，输入下面的内容，并保存为runJava.bat文件。
+
 {% highlight xml %}
 @ECHO OFF
 cd %~dp1
@@ -52,6 +54,7 @@ java %~n1
 (2) 选择Java目录
 (3) 打开JavaC.sublime-build，并替换下面的行
 原：
+
 {% highlight xml %}
 {
     "cmd": ["javac", "$file"],
@@ -60,6 +63,7 @@ java %~n1
 }
 {% endhighlight %}
 修改后：
+
 {% highlight xml %}
 {
     "cmd": ["runJava.bat", "$file"],
@@ -71,7 +75,8 @@ java %~n1
 # 4. 写一个Java程序测试一下
 
 编写一个名为Demo.java的程序，内容如下：
-{% highlight xml %}
+
+{% highlight java %}
 public class Demo{
     public static void main(String[] args){
         System.out.println("This is my test program.");
@@ -82,6 +87,7 @@ public class Demo{
     }
 }
 {% endhighlight %}
+
 编译和运行Java程序，使用Ctrl+B。
 结果输出如图所示：
 <figure>
