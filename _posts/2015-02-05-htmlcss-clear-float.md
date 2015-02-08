@@ -23,7 +23,7 @@ image:
 ## 1.给浮动元素的父级加浮动，子元素可以撑开父级高度
 问题：父级太多的话加的没完没了了，margin失效
 <div style="border:1px solid black;">
-    <div style="width:50px; height:50px; backgroung-color:#7c1; float:left;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
 </div>
 
@@ -31,7 +31,7 @@ image:
 ## 2.给浮动元素的父级加display:inline-block
 问题：显示和上面那个一样，但是不用给父级的父级加浮动，margin仍然失效
 <div style="border:1px solid black;">
-    <div style="width:50px; height:50px; backgroung-color:#7c1; float:left;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
 </div>
 
@@ -39,7 +39,7 @@ image:
 ## 3.在浮动元素下方加一个清浮动样式的div:
 
 <div style="border:1px solid black;">
-    <div style="width:50px; height:50px; backgroung-color:#7c1; float:left;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <div style="height: 0px; background: blue; clear: both; font-size: 0;"></div>
 </div>
@@ -55,7 +55,7 @@ font-size:0; 只能处理到最小高度2px，仍然无法完全去掉
 使用起来快准好，但是不符合W3C标准，将结构和样式分离
 
 <div style="border:1px solid black;">
-    <div style="width:50px; height:50px; backgroung-color:#7c1; float:left;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <br clear="all"/>
 </div>
@@ -94,7 +94,7 @@ font-size:0; 只能处理到最小高度2px，仍然无法完全去掉
 </style>
 
 <div class="box clear">
-    <div style="width:50px; height:50px; backgroung-color:#7c1; float:left;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <br clear="all"/>
 </div>
@@ -117,7 +117,7 @@ zoom：（除normal外任何值） zoom在ff下是不兼容的
 检测浮动元素的溢出，overflow:auto; 可以检测出浮动元素的溢出
 
 <div style="border:1px solid black;overflow:hidden;">
-    <div style="width:50px; height:50px; backgroung-color:#7c1; float:left;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <br clear="all"/>
 </div>
@@ -128,7 +128,7 @@ overflow问题：IE6下不行，包不住浮动元素，解决办法：配合zoo
 position:absolute, position:fixed
 
 <div style="border:1px solid black;position:absolute;">
-    <div style="width:50px; height:50px; backgroung-color:#7c1; float:left;">
+    <div style="width:50px; height:50px; background-color:#7c1; float:left;">
     </div>
     <br clear="all"/>
 </div>
