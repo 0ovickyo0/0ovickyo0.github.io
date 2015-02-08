@@ -28,7 +28,7 @@ image:
 变量值：%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;
 检查是否配置成功：在cmd中输入 java 看是否出现版本信息
 
-# 2.创建批处理或Bash Shell脚本文件
+# STEP2.创建批处理或Bash Shell脚本文件
 
 打开任意的文本编辑器，输入下面的内容，并保存为runJava.bat文件。
 
@@ -47,7 +47,7 @@ java %~n1
 {% endhighlight %}
 然后把runJava.bat批处理文件移动到JDK的bin目录（C:\Program Files\Java\jdk1.8.0_31\bin）。
 
-# 3. 在Sublime Text 2编辑器中配置相应的Java构建环境
+# STEP3. 在Sublime Text 2编辑器中配置相应的Java构建环境
 
 即添加刚才创建的批处理脚本。
 (1) 打开Sublime的包目录，使用菜单Perferences->Browse Packages
@@ -72,7 +72,7 @@ java %~n1
 }
 {% endhighlight %}
 
-# 4. 写一个Java程序测试一下
+# STEP4. 写一个Java程序测试一下
 
 编写一个名为Demo.java的程序，内容如下：
 
