@@ -228,11 +228,13 @@ STEP10.下面配置Tomcat服务器，本例使用Tomcat6
 
 # maven中如何把本地jar打包到仓库/在maven中使用本地仓库
 STEP1：将jar包安装到本地repository中：
-{% highlight shell %}
+
+{% highlight bash %}
 mvn install:install-file -DgroupId=msglib -DartifactId=antlr -Dversion=2.7.6 -Dpackaging=jar -Dfile=D:\msglib\antlr-2.7.6.jar
 {% endhighlight %}
 
 STEP2.添加 in project repository，
+
 {% highlight xml %}
 <repositories>
     <repository>
@@ -244,6 +246,7 @@ STEP2.添加 in project repository，
 {% endhighlight %}
 
 STEP3.在pom.xml中添加了
+
 {% highlight xml %}
 <dependency>
     <groupId>msglib</groupId>
