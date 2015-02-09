@@ -1,6 +1,6 @@
 ---
 layout: post
-title:三角形—挑战程序设计P16
+title: 三角形—挑战程序设计P16
 description: "挑战程序设计 读书笔记 之 三角形"
 modified: 2014-10-01
 tags: [java, 算法, 读书笔记]
