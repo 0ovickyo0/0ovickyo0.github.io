@@ -173,7 +173,7 @@ Step 3: Left column pulled into place
 ## STEP4.将右侧部分放到合适的地方
 现在唯一要做的事就是将右边部分放到合适的地方。我们使用了一个负的margin值：
 添加代码：
-{% highlight html %}
+{% highlight css %}
 #right {
   width: 150px;          /* RC width */
   margin-right: -150px;  /* RC width */
