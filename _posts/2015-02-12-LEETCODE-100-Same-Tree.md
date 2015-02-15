@@ -15,7 +15,9 @@ Given two binary trees, write a function to check if they are equal or not.
 Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
 
 给定两个二叉树，写一个函数来判断它们是否相等。相等的条件是子节点具有相同的值。
+
 <!--more-->
+
 # 分析：
 递归调用自身。
 {% highlight java %}
