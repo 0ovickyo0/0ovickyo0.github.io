@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [LEETCODE] 100 Same Tree
+title: LEETCODE 100 Same Tree
 description: "LEETCODE Same Tree 解题报告"
 modified: 2015-02-12
 tags: [java, 算法, leetcode]

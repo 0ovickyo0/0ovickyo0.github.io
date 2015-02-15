@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [LEETCODE] 104 Maximum Depth of Binary Tree
+title: LEETCODE 104 Maximum Depth of Binary Tree
 description: "LEETCODE Maximum Depth of Binary Tree 解题报告"
 modified: 2015-02-11
 tags: [java, 算法, leetcode]
