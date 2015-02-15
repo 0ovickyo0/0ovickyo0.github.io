@@ -39,7 +39,7 @@ image:
 
 效果图：
 <figure>
-	<a href="/images/post/2015-02-10-1.gif"><img src="/images/post/2015-02-10-1.gif" alt=""></a>
+	<a href="/images/post/2015-02-10-1.png"><img src="/images/post/2015-02-10-1.png" alt=""></a>
 </figure>
 每次看到圣杯布局都离不开一篇文章，那就是a list apart里面的 [In search of the Holy Grail](http://alistapart.com/article/holygrail).
 
@@ -64,7 +64,7 @@ image:
 
 操作到这里，我们的整个页面结构应该如下图所示：
 <figure>
-	<a href="/images/post/2015-02-10-2.gif"><img src="/images/post/2015-02-10-2.gif" alt="Step 1: Create the frame"></a>
+	<a href="/images/post/2015-02-10-2.png"><img src="/images/post/2015-02-10-2.png" alt="Step 1: Create the frame"></a>
 </figure>
 Step 1: Create the frame
 
@@ -106,14 +106,14 @@ Step 1: Create the frame
 {% endhighlight %}
 效果：
 <figure>
-	<a href="/images/post/2015-02-10-3.gif"><img src="/images/post/2015-02-10-3.gif" alt=""></a>
+	<a href="/images/post/2015-02-10-3.png"><img src="/images/post/2015-02-10-3.png" alt=""></a>
 </figure>
 
 注意：中间栏给的100% width，指代的是container div的宽度，是不包含两侧的padding值的。当我们将所有的层级都写完的时候，我们还会再次用到100% width，它同样也指代的是中间的container div的宽度，是不包含padding值的。
 
 现在的整个页面的结构应该如下所示：
 <figure>
-	<a href="/images/post/2015-02-10-4.gif"><img src="/images/post/2015-02-10-4.gif" alt="Step 2: Add the columns"></a>
+	<a href="/images/post/2015-02-10-4.png"><img src="/images/post/2015-02-10-4.png" alt="Step 2: Add the columns"></a>
 </figure>
 Step 2: Add the columns
 
@@ -133,13 +133,13 @@ Step 2: Add the columns
 
 效果：
 <figure>
-	<a href="/images/post/2015-02-10-5.gif"><img src="/images/post/2015-02-10-5.gif" alt=""></a>
+	<a href="/images/post/2015-02-10-5.png"><img src="/images/post/2015-02-10-5.png" alt=""></a>
 </figure>
 
 
 现在，左边部分将会覆盖中间部分，左边界（左边的边）是对齐的。右边部分是左浮动的，同时和中间部分共有一条右边界（右边的边）。看起来结构应该如下所示：
 <figure>
-	<a href="/images/post/2015-02-10-6.gif"><img src="/images/post/2015-02-10-6.gif" alt="Step 3: Pull the left column into place—halfway there"></a>
+	<a href="/images/post/2015-02-10-6.png"><img src="/images/post/2015-02-10-6.png" alt="Step 3: Pull the left column into place—halfway there"></a>
 </figure>
 Step 3: Pull the left column into place—halfway there
 
@@ -161,12 +161,12 @@ Step 3: Pull the left column into place—halfway there
 
 效果（浏览器宽度减小时，左侧部分被挤到下面，并从左边往中间挤）：
 <figure>
-    <a href="/images/post/2015-02-10-7.gif"><img src="/images/post/2015-02-10-7.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-7.png"><img src="/images/post/2015-02-10-7.png" alt=""></a>
 </figure>
 
 right属性让左边部分距离其右边边框200px，那就是把左边部分移到左边去了。现在左边部分能够恰好占据container的padding部分。
 <figure>
-    <a href="/images/post/2015-02-10-8.gif"><img src="/images/post/2015-02-10-8.gif" alt="Step 3: Left column pulled into place"></a>
+    <a href="/images/post/2015-02-10-8.png"><img src="/images/post/2015-02-10-8.png" alt="Step 3: Left column pulled into place"></a>
 </figure>
 Step 3: Left column pulled into place
 
@@ -182,12 +182,12 @@ Step 3: Left column pulled into place
 
 效果（当浏览器宽度足够小的时候，一样也会出现奇怪的问题）：
 <figure>
-    <a href="/images/post/2015-02-10-9.gif"><img src="/images/post/2015-02-10-9.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-9.png"><img src="/images/post/2015-02-10-9.png" alt=""></a>
 </figure>
 
 结构如下：
 <figure>
-    <a href="/images/post/2015-02-10-10.gif"><img src="/images/post/2015-02-10-10.gif" alt="Step 4: Pull the right column into place"></a>
+    <a href="/images/post/2015-02-10-10.png"><img src="/images/post/2015-02-10-10.png" alt="Step 4: Pull the right column into place"></a>
 </figure>
 Step 4: Pull the right column into place
 ## STEP5.完善代码
@@ -202,7 +202,7 @@ body {
 
 效果：
 <figure>
-    <a href="/images/post/2015-02-10-11.gif"><img src="/images/post/2015-02-10-11.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-11.png"><img src="/images/post/2015-02-10-11.png" alt=""></a>
 </figure>
 
 在IE6下，负的margin值会让左边部分到达浏览器左边很远的地方。我们需要把它拉回来放到正确的地方，使用的是 star-html hack。
@@ -217,11 +217,11 @@ body {
 
 问题效果：
 <figure>
-    <a href="/images/post/2015-02-10-12.gif"><img src="/images/post/2015-02-10-12.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-12.png"><img src="/images/post/2015-02-10-12.png" alt=""></a>
 </figure>
 修正后效果：
 <figure>
-    <a href="/images/post/2015-02-10-13.gif"><img src="/images/post/2015-02-10-13.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-13.png"><img src="/images/post/2015-02-10-13.png" alt=""></a>
 </figure>
 
 ## 如果加上了padding
@@ -237,7 +237,7 @@ padding可以直接加载左边部分和右边部分上。假设现在给左边�
 
 效果（左边有padding，右边没有padding，中间不是等高的，所以会是空白的）：
 <figure>
-    <a href="/images/post/2015-02-10-14.gif"><img src="/images/post/2015-02-10-14.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-14.png"><img src="/images/post/2015-02-10-14.png" alt=""></a>
 </figure>
 当padding增加到100%时会导致中间部分超出了container的non-padded width（请原谅我的渣翻译...）。为了让它回到正确的地方，我们需要在总的padding上增加right margin的大小。这就确保了中间只有我们想要的那么大。
 
@@ -282,7 +282,7 @@ body {
 
 效果：
 <figure>
-    <a href="/images/post/2015-02-10-15.gif"><img src="/images/post/2015-02-10-15.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-15.png"><img src="/images/post/2015-02-10-15.png" alt=""></a>
 </figure>
 top和bottom的padding加起来一点问题都没有。
 
@@ -306,7 +306,7 @@ top和bottom的padding加起来一点问题都没有。
 
 效果：
 <figure>
-    <a href="/images/post/2015-02-10-16.gif"><img src="/images/post/2015-02-10-16.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-16.png"><img src="/images/post/2015-02-10-16.png" alt=""></a>
 </figure>
 以上的代码，在左右中部分的最下面是增加了10px的padding的。
 
@@ -394,7 +394,7 @@ top和bottom的padding加起来一点问题都没有。
 
 效果：
 <figure>
-    <a href="/images/post/2015-02-10-17.gif"><img src="/images/post/2015-02-10-17.gif" alt=""></a>
+    <a href="/images/post/2015-02-10-17.png"><img src="/images/post/2015-02-10-17.png" alt=""></a>
 </figure>
 
 
