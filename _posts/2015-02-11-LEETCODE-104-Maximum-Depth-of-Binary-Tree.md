@@ -14,6 +14,8 @@ Given a binary tree, find its maximum depth.
 
 The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
+---
+
 给定一个二叉树，找到最深深度。
 
 <!--more-->
