@@ -25,6 +25,8 @@ Given n = 3, there are a total of 5 unique BST's.
    2     1         2                 3
 {% endhighlight %}
 
+<!--more-->
+
 ---
 
 给定整数n判断其能够构成多少个二分查找树。
