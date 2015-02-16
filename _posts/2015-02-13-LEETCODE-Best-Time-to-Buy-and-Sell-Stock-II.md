@@ -11,13 +11,16 @@ image:
 
 # 问题描述
 
->Say you have an array for which the ith element is the price of a given stock on day i.
+Say you have an array for which the ith element is the price of a given stock on day i.
 
->Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+
+---
 
 假设你有一只股票i天的价格走势，找出最佳盈利操作方法，你可以操作任意多次，但是你在买入之前必须先卖出。
 
 <!--more-->
+
 # 解决方案
 
 我的实现（想法是确保每次在最低点买入，在最高点卖出。这样虽然能使得操作股票的次数最少，但是却不是最简单的代码）：
