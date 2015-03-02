@@ -21,6 +21,8 @@ struct TreeLinkNode {
 
 Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
 
+<!--more-->
+
 Initially, all next pointers are set to NULL.
 
 Note:
@@ -50,6 +52,8 @@ After calling your function, the tree should look like:
  / \  / \
 4->5->6->7 -> NULL
 {% endhighlight %}
+
+---
 
 给树的每一个节点填充一个指向它下一个右节点的指针。如果右边没有节点了，那么next指向null。
 
