@@ -92,4 +92,4 @@ public class Solution {
 {% endhighlight %}
 
 # 相关阅读：
-[LEETCODE Roman to Integer]({{ site.url }}/LEETCODE-Single-Number/)
+[LEETCODE Single Number]({{ site.url }}/LEETCODE-Single-Number/)
