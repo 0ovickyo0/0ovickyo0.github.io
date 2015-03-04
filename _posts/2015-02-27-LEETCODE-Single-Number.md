@@ -26,7 +26,9 @@ Your algorithm should have a linear runtime complexity. Could you implement it w
 
 # 分析
 
-## 1.最先想到的办法，先排序，然后判断第一个数和第二个数是否相等，小批量数据是没有问题的！但是数据量大的话，会超过时间限制！
+## 1.暴力解法
+
+最先想到的办法，先排序，然后判断第一个数和第二个数是否相等，小批量数据是没有问题的！但是数据量大的话，会超过时间限制！
 
 ### 代码：
 {% highlight java %}
