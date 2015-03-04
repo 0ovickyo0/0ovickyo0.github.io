@@ -12,6 +12,10 @@ image:
 # 描述：
 Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
 
+<!--more-->
+
+---
+
 给定一个正序排列的数组，将它变成一个平衡二叉树。
 
 
