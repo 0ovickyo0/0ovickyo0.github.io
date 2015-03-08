@@ -18,6 +18,8 @@ Find the minimum element.
 
 You may assume no duplicate exists in the array.
 
+<!--more-->
+
 ---
 
 在一个已经排好序的数组中有一部分进行了反转，找出数组中的最小值。数组中的值无重复。
