@@ -15,6 +15,7 @@ Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do
 在一个mxn的矩阵中，如果一个元素值为0，那么将其行列元素都设为0
 
 <!--more-->
+
 # 分析：
 
 ## 我的方法：
@@ -22,6 +23,7 @@ Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do
 首先遍历找到元素，记录位置，记录行列值。然后再遍历矩阵设置值为0。
 
 ## 更佳的方法：
+
 此题是希望复用已有资源。这里可以选择第一行和第一列来存储标志位。
 
 1.先确定第一行和第一列是否需要清零
