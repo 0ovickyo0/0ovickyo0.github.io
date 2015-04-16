@@ -26,6 +26,8 @@ Return
 ]
 {% endhighlight %}
 
+<!--more-->
+
 # 代码：
 {% highlight java %}
 public class Solution {
