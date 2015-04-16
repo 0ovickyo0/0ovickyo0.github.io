@@ -18,6 +18,7 @@ Find the total sum of all root-to-leaf numbers.
 
 For example,
 {% highlight java %}
+
     1
    / \
   2   3

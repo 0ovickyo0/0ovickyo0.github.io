@@ -23,7 +23,9 @@ image:
 阅读源码第一步，必须是理清整个源码框架的实现：
 	版本2.0.3
 	结构：
-{% highlight javascript %}
+
+---
+
 (function(){
     （21,94） 定义了一些变量和函数，重要函数：jQuery = function( selector, context ){}
     （96, 280）给jq对象添加方法和属性
@@ -45,4 +47,5 @@ image:
     （8804, 8821） JQ支持模块化的模式
     （8826） window.jQuery = window.$ = jQuery; 通过外面找到jQuery，对外提供的接口
 })();
-{% endhighlight %}
+
+---
