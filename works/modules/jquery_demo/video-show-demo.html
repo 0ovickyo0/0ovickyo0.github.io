@@ -1,0 +1,177 @@
+<!DOCTYPE>
+<html>
+<header>
+    <meta charset="utf-8"/>
+    <title>视频展示效果demo</title>
+    <script type="text/javascript" src="../../libs/jquery-2.0.3.min.js"></script>
+    <style>
+        body{
+            font-family: "微软雅黑";
+        }
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+        ul{
+            width: 1800px;
+            position: relative;
+        }
+        a{
+            text-decoration: none;
+        }
+        .v_show{
+            width: 625px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .v_content_list{
+            width: 625px;
+            position: absolute;
+            overflow: hidden;
+        }
+        img{
+            width: 150px;
+            border: 1px solid #000000;
+        }
+        h2,ul,li,img,h4{
+            margin: 0;
+            padding: 0;
+        }
+        .clear{
+            clear: both;
+        }
+        h2, .highlight_tip, .change_btn{
+            float: left;
+            line-height: 40px;
+        }
+        em{
+            float: right;
+        }
+        .highlight_tip, .change_btn, em{
+            padding: 0 20px;
+        }
+        h4{
+            color: #000000;
+        }
+        .current{
+            color: #ffd110;
+        }
+
+    </style>
+</header>
+<body>
+    <div class="v_show">
+        <div class="v_caption">
+            <h2 class="cartoon" title="卡通动漫">卡通动漫</h2>
+            <div class="highlight_tip">
+                <span class="current">1</span>
+                <span>2</span>
+            </div>
+            <div class="change_btn">
+                <span class="prev">上一页</span>
+                <span class="next">下一页</span>
+            </div>
+            <em><a href="#">更多</a> </em>
+        </div>
+        <div class="v_content clear">
+            <div class="v_content_list">
+                <ul>
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">浪客剑心</a></h4><span>播放：<em>28,276</em></span>
+                    </li>
+
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">浪客剑心</a></h4><span>播放：<em>28,276</em></span>
+                    </li>
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">浪客剑心</a></h4><span>播放：<em>28,276</em></span>
+                    </li>
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">浪客剑心</a></h4><span>播放：<em>28,276</em></span>
+                    </li>
+
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">最爱剑心</a></h4><span>播放：<em>33,276</em></span>
+                    </li>
+
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">最爱剑心</a></h4><span>播放：<em>33,276</em></span>
+                    </li>
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">最爱剑心</a></h4><span>播放：<em>33,276</em></span>
+                    </li>
+                    <li>
+                        <a href="#"><img src="images/kenshin420x240.jpg"></a>
+                        <h4><a href="#">最爱剑心</a></h4><span>播放：<em>33,276</em></span>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+<script type="text/javascript">
+    $(function(){
+        var page = 1;
+        var i = 4; //每版放四个图片
+        $("span.next").click(function(){
+           var parent = $(this).parents("div.v_show"); //根据当前单击的元素获取到父元素
+            var v_show = parent.find("ul"); //找到视频内容展示区
+            var v_content = parent.find("div.v_content"); //找到视频内容展示区外围的div
+
+            var v_width = v_content.width();
+
+            var len = v_show.find("li").length; //总的视频图片数
+            var page_count = Math.ceil(len/i); //只要不是整数就往向大的方向取整
+
+            if(!v_show.is(":animated")){
+                if(page == page_count){ //已经到最后一个版面了，再向后就跳到第一个版面
+                    v_show.animate({left : '0px'}, "slow"); //通过改变left值跳到第一个版面
+                    page = 1;
+                }else {
+                    v_show.animate({left: '-='+v_width}, "slow"); //改变left值到达每一个版面
+                    page++;
+                }
+
+                //给指定元素添加current样式，并去掉其同辈元素的current样式
+                parent.find("span").eq((page-1)).addClass("current").siblings().removeClass("current");
+            }
+        });
+        $("span.prev").click(function(){
+            var parent = $(this).parents("div.v_show"); //根据当前单击的元素获取到父元素
+            var v_show = parent.find("ul"); //找到视频内容展示区
+            var v_content = parent.find("div.v_content"); //找到视频内容展示区外围的div
+
+            var v_width = v_content.width();
+
+            var len = v_show.find("li").length; //总的视频图片数
+            var page_count = Math.ceil(len/i); //只要不是整数就往向大的方向取整
+
+            if(!v_show.is(":animated")){
+                if(page == 1){ //已经到最后一个版面了，再向后就跳到第一个版面
+                    v_show.animate({left : '-='+v_width*(page_count-1)}, "slow"); //通过改变left值跳到第一个版面
+                    page = page_count;
+                }else {
+                    v_show.animate({left: '+='+v_width}, "slow"); //改变left值到达每一个版面
+                    page--;
+                }
+
+                //给指定元素添加current样式，并去掉其同辈元素的current样式
+                parent.find("span").eq((page-1)).addClass("current").siblings().removeClass("current");
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

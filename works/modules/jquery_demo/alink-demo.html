@@ -1,0 +1,65 @@
+<!DOCTYPE>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>超链接的提示效果demo</title>
+    <style>
+        #demo-description{
+            display: none;
+        }
+        body{
+            font-family: "微软雅黑";
+        }
+        a{
+            text-decoration: none;
+        }
+        #demo-body {
+            width: 200px;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="demo-body">
+    <p><a href="#" title="这是我的超链接提示1" class="tooltip">提示1</a></p>
+    <p><a href="#" title="这是我的超链接提示2" class="tooltip">提示2</a></p>
+    <p><a href="#" title="这是自带的提示1">自带提示1</a></p>
+    <p><a href="#" title="这是自带的提示2">自带提示2</a></p>
+</div>
+<div id="demo-description">
+    在浏览器中，已经自带了超链接提示，只需在超链接中加入title属性就可以了。
+    然而这个提示效果的响应速度是非常缓慢的，考虑到良好的人机交互，需要的是当鼠标移动到超链接的那一瞬间就出现提示。
+    这时就需要移除a标签中的title提示效果，自己动手做一个类似的功能。
+</div>
+
+<script type="text/javascript" src="../../libs/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("a.tooltip").mouseover(function(e){
+            //显示title
+            this.mytitle = this.title;
+            this.title = ""; //阻止title的默认显示
+            console.log(e.pageX, e.pageY);
+            //创建div元素
+            var tooltip = "<div id='tooltip'>" + this.mytitle + "</div>";
+            $("body").append(tooltip); //将他追加到文档中
+            $("#tooltip").css({
+                "top": e.pageY+10+"px",
+                "left" : e.pageX+10+ "px",
+                "position" : "absolute"
+            }).show("fast"); //设置xy坐标并显示
+        }).mouseout(function(){
+            //隐藏title
+            this.title = this.mytitle;
+            $("#tooltip").remove(); //移除
+        });
+    });
+
+
+
+</script>
+</body>
+</html>
